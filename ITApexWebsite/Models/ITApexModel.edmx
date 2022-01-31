@@ -1,0 +1,660 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="DbITApexModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="tbl_SlideImage">
+          <Key>
+            <PropertyRef Name="slide_Id" />
+          </Key>
+          <Property Name="slide_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="slide_title" Type="nvarchar" MaxLength="50" />
+          <Property Name="slide_image" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="tblAdmin">
+          <Key>
+            <PropertyRef Name="a_Id" />
+          </Key>
+          <Property Name="a_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="a_email" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="a_pass" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblCart">
+          <Key>
+            <PropertyRef Name="cart_Id" />
+          </Key>
+          <Property Name="cart_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="cart_fk_pro" Type="int" />
+          <Property Name="u_Id" Type="int" />
+          <Property Name="cartStatus_Id" Type="int" />
+        </EntityType>
+        <EntityType Name="tblCartStatus">
+          <Key>
+            <PropertyRef Name="cartStatus_Id" />
+          </Key>
+          <Property Name="cartStatus_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="carStatus" Type="nvarchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="tblCategory">
+          <Key>
+            <PropertyRef Name="c_Id" />
+          </Key>
+          <Property Name="c_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="c_name" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="isActive" Type="bit" />
+          <Property Name="isdelete" Type="bit" />
+        </EntityType>
+        <EntityType Name="tblCategory_u">
+          <Key>
+            <PropertyRef Name="c_Id" />
+          </Key>
+          <Property Name="c_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="c_name" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="c_fk_user" Type="int" />
+          <Property Name="isActive" Type="bit" />
+          <Property Name="isDelete" Type="bit" />
+        </EntityType>
+        <EntityType Name="tblMemberRole">
+          <Key>
+            <PropertyRef Name="memberRole_Id" />
+          </Key>
+          <Property Name="memberRole_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="u_Id" Type="int" />
+          <Property Name="role_id" Type="int" />
+        </EntityType>
+        <EntityType Name="tblProduct">
+          <Key>
+            <PropertyRef Name="p_Id" />
+          </Key>
+          <Property Name="p_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="p_name" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="p_image" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="p_description" Type="nvarchar" MaxLength="500" />
+          <Property Name="p_quantity" Type="int" />
+          <Property Name="p_price" Type="int" />
+          <Property Name="p_createdDate" Type="datetime" />
+          <Property Name="p_modifiedDate" Type="datetime" />
+          <Property Name="p_isFeatured" Type="bit" />
+          <Property Name="isActive" Type="bit" />
+          <Property Name="isDelete" Type="bit" />
+          <Property Name="p_fk_c" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblProduct_u">
+          <Key>
+            <PropertyRef Name="p_Id" />
+          </Key>
+          <Property Name="p_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="p_name" Type="nvarchar" MaxLength="500" />
+          <Property Name="p_img" Type="nvarchar(max)" />
+          <Property Name="p_price" Type="int" />
+          <Property Name="p_desc" Type="nvarchar" MaxLength="500" />
+          <Property Name="p_quantity" Type="int" />
+          <Property Name="p_fk_user" Type="int" />
+          <Property Name="p_fk_Category" Type="int" />
+        </EntityType>
+        <EntityType Name="tblRoles">
+          <Key>
+            <PropertyRef Name="role_Id" />
+          </Key>
+          <Property Name="role_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="role_name" Type="nvarchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="tblShippingDetails">
+          <Key>
+            <PropertyRef Name="shipping_Id" />
+          </Key>
+          <Property Name="shipping_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="shipping_fk_user" Type="int" />
+          <Property Name="address" Type="nvarchar(max)" />
+          <Property Name="city" Type="nvarchar(max)" />
+          <Property Name="state" Type="nvarchar(max)" />
+          <Property Name="country" Type="nvarchar(max)" />
+          <Property Name="pincode" Type="nvarchar(max)" />
+          <Property Name="order_Id" Type="int" />
+          <Property Name="amount_paid" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="payment_type" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="tblUser">
+          <Key>
+            <PropertyRef Name="u_Id" />
+          </Key>
+          <Property Name="u_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="u_name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="u_email" Type="nvarchar" MaxLength="254" Nullable="false" />
+          <Property Name="u_contact" Type="int" Nullable="false" />
+          <Property Name="u_pass" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="u_CreatedOn" Type="datetime" />
+          <Property Name="u_ModifiedOn" Type="datetime" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="IsDelete" Type="bit" />
+        </EntityType>
+        <Association Name="FK_tblCart_tblProduct">
+          <End Role="tblProduct" Type="Self.tblProduct" Multiplicity="0..1" />
+          <End Role="tblCart" Type="Self.tblCart" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblProduct">
+              <PropertyRef Name="p_Id" />
+            </Principal>
+            <Dependent Role="tblCart">
+              <PropertyRef Name="cart_fk_pro" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblCategory_tblUser">
+          <End Role="tblUser" Type="Self.tblUser" Multiplicity="0..1" />
+          <End Role="tblCategory_u" Type="Self.tblCategory_u" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUser">
+              <PropertyRef Name="u_Id" />
+            </Principal>
+            <Dependent Role="tblCategory_u">
+              <PropertyRef Name="c_fk_user" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblProduct_tblCategory">
+          <End Role="tblCategory" Type="Self.tblCategory" Multiplicity="1" />
+          <End Role="tblProduct" Type="Self.tblProduct" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblCategory">
+              <PropertyRef Name="c_Id" />
+            </Principal>
+            <Dependent Role="tblProduct">
+              <PropertyRef Name="p_fk_c" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblProduct_u_tblCategory">
+          <End Role="tblCategory" Type="Self.tblCategory" Multiplicity="0..1" />
+          <End Role="tblProduct_u" Type="Self.tblProduct_u" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblCategory">
+              <PropertyRef Name="c_Id" />
+            </Principal>
+            <Dependent Role="tblProduct_u">
+              <PropertyRef Name="p_fk_Category" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblProduct_u_tblUser">
+          <End Role="tblUser" Type="Self.tblUser" Multiplicity="0..1" />
+          <End Role="tblProduct_u" Type="Self.tblProduct_u" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUser">
+              <PropertyRef Name="u_Id" />
+            </Principal>
+            <Dependent Role="tblProduct_u">
+              <PropertyRef Name="p_fk_user" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblShippingDetails_tblUser">
+          <End Role="tblUser" Type="Self.tblUser" Multiplicity="0..1" />
+          <End Role="tblShippingDetails" Type="Self.tblShippingDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUser">
+              <PropertyRef Name="u_Id" />
+            </Principal>
+            <Dependent Role="tblShippingDetails">
+              <PropertyRef Name="shipping_fk_user" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DbITApexModelStoreContainer">
+          <EntitySet Name="tbl_SlideImage" EntityType="Self.tbl_SlideImage" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblAdmin" EntityType="Self.tblAdmin" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblCart" EntityType="Self.tblCart" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblCartStatus" EntityType="Self.tblCartStatus" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblCategory" EntityType="Self.tblCategory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblCategory_u" EntityType="Self.tblCategory_u" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblMemberRole" EntityType="Self.tblMemberRole" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblProduct" EntityType="Self.tblProduct" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblProduct_u" EntityType="Self.tblProduct_u" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblRoles" EntityType="Self.tblRoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblShippingDetails" EntityType="Self.tblShippingDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblUser" EntityType="Self.tblUser" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_tblCart_tblProduct" Association="Self.FK_tblCart_tblProduct">
+            <End Role="tblProduct" EntitySet="tblProduct" />
+            <End Role="tblCart" EntitySet="tblCart" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblCategory_tblUser" Association="Self.FK_tblCategory_tblUser">
+            <End Role="tblUser" EntitySet="tblUser" />
+            <End Role="tblCategory_u" EntitySet="tblCategory_u" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblProduct_tblCategory" Association="Self.FK_tblProduct_tblCategory">
+            <End Role="tblCategory" EntitySet="tblCategory" />
+            <End Role="tblProduct" EntitySet="tblProduct" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblProduct_u_tblCategory" Association="Self.FK_tblProduct_u_tblCategory">
+            <End Role="tblCategory" EntitySet="tblCategory" />
+            <End Role="tblProduct_u" EntitySet="tblProduct_u" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblProduct_u_tblUser" Association="Self.FK_tblProduct_u_tblUser">
+            <End Role="tblUser" EntitySet="tblUser" />
+            <End Role="tblProduct_u" EntitySet="tblProduct_u" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblShippingDetails_tblUser" Association="Self.FK_tblShippingDetails_tblUser">
+            <End Role="tblUser" EntitySet="tblUser" />
+            <End Role="tblShippingDetails" EntitySet="tblShippingDetails" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DbITApexModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="tblAdmin">
+          <Key>
+            <PropertyRef Name="a_Id" />
+          </Key>
+          <Property Name="a_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="a_email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="a_pass" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblUser">
+          <Key>
+            <PropertyRef Name="u_Id" />
+          </Key>
+          <Property Name="u_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="u_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="u_email" Type="String" MaxLength="254" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="u_contact" Type="Int32" Nullable="false" />
+          <Property Name="u_pass" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="u_CreatedOn" Type="DateTime" Precision="3" />
+          <Property Name="u_ModifiedOn" Type="DateTime" Precision="3" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="IsDelete" Type="Boolean" />
+          <NavigationProperty Name="tblShippingDetails" Relationship="DbITApexModel.FK_tblShippingDetails_tblUser" FromRole="tblUser" ToRole="tblShippingDetail" />
+          <NavigationProperty Name="tblCategory_u" Relationship="DbITApexModel.FK_tblCategory_tblUser" FromRole="tblUser" ToRole="tblCategory_u" />
+          <NavigationProperty Name="tblProduct_u" Relationship="DbITApexModel.FK_tblProduct_u_tblUser" FromRole="tblUser" ToRole="tblProduct_u" />
+        </EntityType>
+        <EntityContainer Name="DbITApexEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="tblAdmins" EntityType="Self.tblAdmin" />
+          <EntitySet Name="tblUsers" EntityType="Self.tblUser" />
+          <EntitySet Name="tbl_SlideImage" EntityType="DbITApexModel.tbl_SlideImage" />
+          <EntitySet Name="tblCarts" EntityType="DbITApexModel.tblCart" />
+          <EntitySet Name="tblCartStatus" EntityType="DbITApexModel.tblCartStatu" />
+          <EntitySet Name="tblMemberRoles" EntityType="DbITApexModel.tblMemberRole" />
+          <EntitySet Name="tblRoles" EntityType="DbITApexModel.tblRole" />
+          <EntitySet Name="tblShippingDetails" EntityType="DbITApexModel.tblShippingDetail" />
+          <AssociationSet Name="FK_tblShippingDetails_tblUser" Association="DbITApexModel.FK_tblShippingDetails_tblUser">
+            <End Role="tblUser" EntitySet="tblUsers" />
+            <End Role="tblShippingDetail" EntitySet="tblShippingDetails" />
+          </AssociationSet>
+          <EntitySet Name="tblCategory_u" EntityType="DbITApexModel.tblCategory_u" />
+          <EntitySet Name="tblProduct_u" EntityType="DbITApexModel.tblProduct_u" />
+          <AssociationSet Name="FK_tblCategory_tblUser" Association="DbITApexModel.FK_tblCategory_tblUser">
+            <End Role="tblUser" EntitySet="tblUsers" />
+            <End Role="tblCategory_u" EntitySet="tblCategory_u" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblProduct_u_tblUser" Association="DbITApexModel.FK_tblProduct_u_tblUser">
+            <End Role="tblUser" EntitySet="tblUsers" />
+            <End Role="tblProduct_u" EntitySet="tblProduct_u" />
+          </AssociationSet>
+          <EntitySet Name="tblProducts" EntityType="DbITApexModel.tblProduct" />
+          <AssociationSet Name="FK_tblCart_tblProduct" Association="DbITApexModel.FK_tblCart_tblProduct">
+            <End Role="tblProduct" EntitySet="tblProducts" />
+            <End Role="tblCart" EntitySet="tblCarts" />
+          </AssociationSet>
+          <EntitySet Name="tblCategories" EntityType="DbITApexModel.tblCategory" />
+          <AssociationSet Name="FK_tblProduct_tblCategory" Association="DbITApexModel.FK_tblProduct_tblCategory">
+            <End Role="tblCategory" EntitySet="tblCategories" />
+            <End Role="tblProduct" EntitySet="tblProducts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblProduct_u_tblCategory" Association="DbITApexModel.FK_tblProduct_u_tblCategory">
+            <End Role="tblCategory" EntitySet="tblCategories" />
+            <End Role="tblProduct_u" EntitySet="tblProduct_u" />
+          </AssociationSet>
+          </EntityContainer>
+        <EntityType Name="tbl_SlideImage">
+          <Key>
+            <PropertyRef Name="slide_Id" />
+          </Key>
+          <Property Name="slide_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="slide_title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="slide_image" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="tblCart">
+          <Key>
+            <PropertyRef Name="cart_Id" />
+          </Key>
+          <Property Name="cart_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="cart_fk_pro" Type="Int32" />
+          <Property Name="u_Id" Type="Int32" />
+          <Property Name="cartStatus_Id" Type="Int32" />
+          <NavigationProperty Name="tblProduct" Relationship="DbITApexModel.FK_tblCart_tblProduct" FromRole="tblCart" ToRole="tblProduct" />
+        </EntityType>
+        <EntityType Name="tblCartStatu">
+          <Key>
+            <PropertyRef Name="cartStatus_Id" />
+          </Key>
+          <Property Name="cartStatus_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="carStatus" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="tblMemberRole">
+          <Key>
+            <PropertyRef Name="memberRole_Id" />
+          </Key>
+          <Property Name="memberRole_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="u_Id" Type="Int32" />
+          <Property Name="role_id" Type="Int32" />
+        </EntityType>
+        <EntityType Name="tblRole">
+          <Key>
+            <PropertyRef Name="role_Id" />
+          </Key>
+          <Property Name="role_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="role_name" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="tblShippingDetail">
+          <Key>
+            <PropertyRef Name="shipping_Id" />
+          </Key>
+          <Property Name="shipping_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="shipping_fk_user" Type="Int32" />
+          <Property Name="address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="city" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="state" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="country" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="pincode" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="order_Id" Type="Int32" />
+          <Property Name="amount_paid" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="payment_type" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tblUser" Relationship="DbITApexModel.FK_tblShippingDetails_tblUser" FromRole="tblShippingDetail" ToRole="tblUser" />
+        </EntityType>
+        <Association Name="FK_tblShippingDetails_tblUser">
+          <End Type="DbITApexModel.tblUser" Role="tblUser" Multiplicity="0..1" />
+          <End Type="DbITApexModel.tblShippingDetail" Role="tblShippingDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUser">
+              <PropertyRef Name="u_Id" />
+            </Principal>
+            <Dependent Role="tblShippingDetail">
+              <PropertyRef Name="shipping_fk_user" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="tblCategory_u">
+          <Key>
+            <PropertyRef Name="c_Id" />
+          </Key>
+          <Property Name="c_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="c_name" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="c_fk_user" Type="Int32" />
+          <Property Name="isActive" Type="Boolean" />
+          <Property Name="isDelete" Type="Boolean" />
+          <NavigationProperty Name="tblUser" Relationship="DbITApexModel.FK_tblCategory_tblUser" FromRole="tblCategory_u" ToRole="tblUser" />
+        </EntityType>
+        <EntityType Name="tblProduct_u">
+          <Key>
+            <PropertyRef Name="p_Id" />
+          </Key>
+          <Property Name="p_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="p_name" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="p_img" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="p_price" Type="Int32" />
+          <Property Name="p_desc" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="p_quantity" Type="Int32" />
+          <Property Name="p_fk_user" Type="Int32" />
+          <Property Name="p_fk_Category" Type="Int32" />
+          <NavigationProperty Name="tblUser" Relationship="DbITApexModel.FK_tblProduct_u_tblUser" FromRole="tblProduct_u" ToRole="tblUser" />
+          <NavigationProperty Name="tblCategory" Relationship="DbITApexModel.FK_tblProduct_u_tblCategory" FromRole="tblProduct_u" ToRole="tblCategory" />
+        </EntityType>
+        <Association Name="FK_tblCategory_tblUser">
+          <End Type="DbITApexModel.tblUser" Role="tblUser" Multiplicity="0..1" />
+          <End Type="DbITApexModel.tblCategory_u" Role="tblCategory_u" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUser">
+              <PropertyRef Name="u_Id" />
+            </Principal>
+            <Dependent Role="tblCategory_u">
+              <PropertyRef Name="c_fk_user" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblProduct_u_tblUser">
+          <End Type="DbITApexModel.tblUser" Role="tblUser" Multiplicity="0..1" />
+          <End Type="DbITApexModel.tblProduct_u" Role="tblProduct_u" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUser">
+              <PropertyRef Name="u_Id" />
+            </Principal>
+            <Dependent Role="tblProduct_u">
+              <PropertyRef Name="p_fk_user" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="tblProduct">
+          <Key>
+            <PropertyRef Name="p_Id" />
+          </Key>
+          <Property Name="p_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="p_name" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="p_image" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="p_description" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="p_quantity" Type="Int32" />
+          <Property Name="p_price" Type="Int32" />
+          <Property Name="p_createdDate" Type="DateTime" Precision="3" />
+          <Property Name="p_modifiedDate" Type="DateTime" Precision="3" />
+          <Property Name="p_isFeatured" Type="Boolean" />
+          <Property Name="isActive" Type="Boolean" />
+          <Property Name="isDelete" Type="Boolean" />
+          <Property Name="p_fk_c" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="tblCarts" Relationship="DbITApexModel.FK_tblCart_tblProduct" FromRole="tblProduct" ToRole="tblCart" />
+          <NavigationProperty Name="tblCategory" Relationship="DbITApexModel.FK_tblProduct_tblCategory" FromRole="tblProduct" ToRole="tblCategory" />
+        </EntityType>
+        <Association Name="FK_tblCart_tblProduct">
+          <End Type="DbITApexModel.tblProduct" Role="tblProduct" Multiplicity="0..1" />
+          <End Type="DbITApexModel.tblCart" Role="tblCart" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblProduct">
+              <PropertyRef Name="p_Id" />
+            </Principal>
+            <Dependent Role="tblCart">
+              <PropertyRef Name="cart_fk_pro" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="tblCategory">
+          <Key>
+            <PropertyRef Name="c_Id" />
+          </Key>
+          <Property Name="c_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="c_name" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="isActive" Type="Boolean" />
+          <Property Name="isdelete" Type="Boolean" />
+          <NavigationProperty Name="tblProducts" Relationship="DbITApexModel.FK_tblProduct_tblCategory" FromRole="tblCategory" ToRole="tblProduct" />
+          <NavigationProperty Name="tblProduct_u" Relationship="DbITApexModel.FK_tblProduct_u_tblCategory" FromRole="tblCategory" ToRole="tblProduct_u" />
+        </EntityType>
+        <Association Name="FK_tblProduct_tblCategory">
+          <End Type="DbITApexModel.tblCategory" Role="tblCategory" Multiplicity="1" />
+          <End Type="DbITApexModel.tblProduct" Role="tblProduct" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblCategory">
+              <PropertyRef Name="c_Id" />
+            </Principal>
+            <Dependent Role="tblProduct">
+              <PropertyRef Name="p_fk_c" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblProduct_u_tblCategory">
+          <End Type="DbITApexModel.tblCategory" Role="tblCategory" Multiplicity="0..1" />
+          <End Type="DbITApexModel.tblProduct_u" Role="tblProduct_u" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblCategory">
+              <PropertyRef Name="c_Id" />
+            </Principal>
+            <Dependent Role="tblProduct_u">
+              <PropertyRef Name="p_fk_Category" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DbITApexModelStoreContainer" CdmEntityContainer="DbITApexEntities">
+          <EntitySetMapping Name="tblAdmins">
+            <EntityTypeMapping TypeName="DbITApexModel.tblAdmin">
+              <MappingFragment StoreEntitySet="tblAdmin">
+                <ScalarProperty Name="a_Id" ColumnName="a_Id" />
+                <ScalarProperty Name="a_email" ColumnName="a_email" />
+                <ScalarProperty Name="a_pass" ColumnName="a_pass" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblUsers">
+            <EntityTypeMapping TypeName="DbITApexModel.tblUser">
+              <MappingFragment StoreEntitySet="tblUser">
+                <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="u_ModifiedOn" ColumnName="u_ModifiedOn" />
+                <ScalarProperty Name="u_CreatedOn" ColumnName="u_CreatedOn" />
+                <ScalarProperty Name="u_Id" ColumnName="u_Id" />
+                <ScalarProperty Name="u_name" ColumnName="u_name" />
+                <ScalarProperty Name="u_email" ColumnName="u_email" />
+                <ScalarProperty Name="u_contact" ColumnName="u_contact" />
+                <ScalarProperty Name="u_pass" ColumnName="u_pass" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_SlideImage">
+            <EntityTypeMapping TypeName="DbITApexModel.tbl_SlideImage">
+              <MappingFragment StoreEntitySet="tbl_SlideImage">
+                <ScalarProperty Name="slide_image" ColumnName="slide_image" />
+                <ScalarProperty Name="slide_title" ColumnName="slide_title" />
+                <ScalarProperty Name="slide_Id" ColumnName="slide_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblCarts">
+            <EntityTypeMapping TypeName="DbITApexModel.tblCart">
+              <MappingFragment StoreEntitySet="tblCart">
+                <ScalarProperty Name="cartStatus_Id" ColumnName="cartStatus_Id" />
+                <ScalarProperty Name="u_Id" ColumnName="u_Id" />
+                <ScalarProperty Name="cart_fk_pro" ColumnName="cart_fk_pro" />
+                <ScalarProperty Name="cart_Id" ColumnName="cart_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblCartStatus">
+            <EntityTypeMapping TypeName="DbITApexModel.tblCartStatu">
+              <MappingFragment StoreEntitySet="tblCartStatus">
+                <ScalarProperty Name="carStatus" ColumnName="carStatus" />
+                <ScalarProperty Name="cartStatus_Id" ColumnName="cartStatus_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblMemberRoles">
+            <EntityTypeMapping TypeName="DbITApexModel.tblMemberRole">
+              <MappingFragment StoreEntitySet="tblMemberRole">
+                <ScalarProperty Name="role_id" ColumnName="role_id" />
+                <ScalarProperty Name="u_Id" ColumnName="u_Id" />
+                <ScalarProperty Name="memberRole_Id" ColumnName="memberRole_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblRoles">
+            <EntityTypeMapping TypeName="DbITApexModel.tblRole">
+              <MappingFragment StoreEntitySet="tblRoles">
+                <ScalarProperty Name="role_name" ColumnName="role_name" />
+                <ScalarProperty Name="role_Id" ColumnName="role_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblShippingDetails">
+            <EntityTypeMapping TypeName="DbITApexModel.tblShippingDetail">
+              <MappingFragment StoreEntitySet="tblShippingDetails">
+                <ScalarProperty Name="payment_type" ColumnName="payment_type" />
+                <ScalarProperty Name="amount_paid" ColumnName="amount_paid" />
+                <ScalarProperty Name="order_Id" ColumnName="order_Id" />
+                <ScalarProperty Name="pincode" ColumnName="pincode" />
+                <ScalarProperty Name="country" ColumnName="country" />
+                <ScalarProperty Name="state" ColumnName="state" />
+                <ScalarProperty Name="city" ColumnName="city" />
+                <ScalarProperty Name="address" ColumnName="address" />
+                <ScalarProperty Name="shipping_fk_user" ColumnName="shipping_fk_user" />
+                <ScalarProperty Name="shipping_Id" ColumnName="shipping_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblCategory_u">
+            <EntityTypeMapping TypeName="DbITApexModel.tblCategory_u">
+              <MappingFragment StoreEntitySet="tblCategory_u">
+                <ScalarProperty Name="isDelete" ColumnName="isDelete" />
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+                <ScalarProperty Name="c_fk_user" ColumnName="c_fk_user" />
+                <ScalarProperty Name="c_name" ColumnName="c_name" />
+                <ScalarProperty Name="c_Id" ColumnName="c_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblProduct_u">
+            <EntityTypeMapping TypeName="DbITApexModel.tblProduct_u">
+              <MappingFragment StoreEntitySet="tblProduct_u">
+                <ScalarProperty Name="p_fk_Category" ColumnName="p_fk_Category" />
+                <ScalarProperty Name="p_fk_user" ColumnName="p_fk_user" />
+                <ScalarProperty Name="p_quantity" ColumnName="p_quantity" />
+                <ScalarProperty Name="p_desc" ColumnName="p_desc" />
+                <ScalarProperty Name="p_price" ColumnName="p_price" />
+                <ScalarProperty Name="p_img" ColumnName="p_img" />
+                <ScalarProperty Name="p_name" ColumnName="p_name" />
+                <ScalarProperty Name="p_Id" ColumnName="p_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblProducts">
+            <EntityTypeMapping TypeName="DbITApexModel.tblProduct">
+              <MappingFragment StoreEntitySet="tblProduct">
+                <ScalarProperty Name="p_fk_c" ColumnName="p_fk_c" />
+                <ScalarProperty Name="isDelete" ColumnName="isDelete" />
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+                <ScalarProperty Name="p_isFeatured" ColumnName="p_isFeatured" />
+                <ScalarProperty Name="p_modifiedDate" ColumnName="p_modifiedDate" />
+                <ScalarProperty Name="p_createdDate" ColumnName="p_createdDate" />
+                <ScalarProperty Name="p_price" ColumnName="p_price" />
+                <ScalarProperty Name="p_quantity" ColumnName="p_quantity" />
+                <ScalarProperty Name="p_description" ColumnName="p_description" />
+                <ScalarProperty Name="p_image" ColumnName="p_image" />
+                <ScalarProperty Name="p_name" ColumnName="p_name" />
+                <ScalarProperty Name="p_Id" ColumnName="p_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblCategories">
+            <EntityTypeMapping TypeName="DbITApexModel.tblCategory">
+              <MappingFragment StoreEntitySet="tblCategory">
+                <ScalarProperty Name="isdelete" ColumnName="isdelete" />
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+                <ScalarProperty Name="c_name" ColumnName="c_name" />
+                <ScalarProperty Name="c_Id" ColumnName="c_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

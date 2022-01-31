@@ -1,0 +1,54 @@
+﻿@model ITApexWebsite.Models.Home.HomeIndexViewModel
+@using PagedList;
+@using PagedList.Mvc;
+@{
+    ViewBag.Title = "ITProducts";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>ITProducts</h2>
+<div class="row product-container">
+    @foreach (var item in Model.ListOfProducts)
+    {
+        <div class="col-md-3 col-sm-3 col-xs-6" style="margin-bottom:8px">
+            <div class="thumbnail product-item" style="height:300px">
+                <img class="img-responsive" src="~/ProductImage/@item.p_image" title="Click to view product detail" style="cursor:pointer;height:160px;width:100%" />
+
+                <div class="caption">
+                    <h5>@item.p_name</h5>
+                    <p>₹@item.p_price </p>
+                    <p>
+                        @if (item.p_quantity > 0)
+                        {
+                            using (Html.BeginForm("AddToCart", "Home", new { productId = item.p_Id }, FormMethod.Post))
+                            {
+                                <button type="submit" class="btn btn-success pull-right"><i class="fa fa-shopping-cart"></i></button>
+
+                            }
+
+                        <p>Available</p>
+                    }
+                    else
+                    {
+                        <p>Not Available</p>
+                    }
+
+
+                        <div class="product-item-badge">
+                            @if (item.p_isFeatured == true)
+                            {
+                                <p>New</p>
+                            }
+                            else
+                            {
+                                <p>Old</p>
+                            }
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        }
+</div>
+

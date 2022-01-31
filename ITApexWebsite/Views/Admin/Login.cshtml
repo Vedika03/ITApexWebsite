@@ -1,0 +1,82 @@
+﻿@model ITApexWebsite.Models.tblAdmin
+
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>AdminLogin</title>
+
+    <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+    <!-- //For-Mobile-Apps -->
+    <!-- Style -->
+    <link rel="stylesheet" href="~/LoginTemplate/css/style.css" type="text/css" media="all">
+    <link href="~/Content/MyLayout.css" rel="stylesheet" />
+</head>
+<body>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")
+
+
+    @*@using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-horizontal">
+                <h4>tblAdmin</h4>
+                <hr />
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="form-group">
+                    @Html.LabelFor(model => model.a_email, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.a_email, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.a_email, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.a_pass, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.a_pass, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.a_pass, "", new { @class = "text-danger" })
+                    </div>
+                </div>*@
+
+    @using (Html.BeginForm())
+    {
+
+        <div class="container">
+            <h1>ADMIN LOGIN</h1>
+            <div class="contact-form">
+                <div class="signin">
+                    <form>
+                        @*<input type="text" class="user" value="Enter Your Username" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Enter Your Username';}" />*@
+                        @Html.EditorFor(model => model.a_email, new { htmlAttributes = new { @type = "text", @class = "user", @value = "Enter Your Email-Id",@placeholder="Email-Id" } })
+                        @Html.ValidationMessageFor(model => model.a_email)
+
+                        @*<input type="password" class="pass" value="Password" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Password';}" />*@
+                        @Html.EditorFor(model => model.a_pass, new { htmlAttributes = new { @type = "password", @class = "pass", @value = "Password",@placeholder="Password" } })
+                        @Html.ValidationMessageFor(model => model.a_pass)
+                        <input type="submit" value="Login" class="btn btn-success">
+
+                    </form>
+                    <div class="form-group">
+                        <p style="color:red">@ViewBag.error</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</body>
+</html>
+<script src="~/Scripts/jquery.validate-vsdoc.js"></script>
+<script src="~/Scripts/jquery.validate.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+

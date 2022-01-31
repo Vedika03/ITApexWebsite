@@ -1,0 +1,149 @@
+﻿@model ITApexWebsite.Models.Home.HomeIndexViewModel
+@using PagedList;
+@using PagedList.Mvc;
+
+@{
+    ViewBag.Title = "Home Page";
+}
+
+
+@*CAROUSEL*@
+<div id="demo" class="carousel slide" data-ride="carousel">
+    <ul class="carousel-indicators">
+        <li data-target="#demo" data-slide-to="0" class="active"></li>
+        <li data-target="#demo" data-slide-to="1"></li>
+        <li data-target="#demo" data-slide-to="2"></li>
+    </ul>
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <img src="~/img/C1.jpeg" width="1100" height="400">
+            <div class="carousel-caption">
+                <h3>One Stop For All IT Products</h3>
+            </div>
+        </div>
+        <div class="carousel-item">
+            <img src="~/img/C2.jpeg" alt="Chicago" width="1100" height="400">
+            <div class="carousel-caption">
+                <h3>Contact us for Repair&Maintainance Services</h3>
+            </div>
+        </div>
+        <div class="carousel-item">
+            <img src="~/img/C4.jpeg" alt="New York" width="1100" height="400">
+            <div class="carousel-caption">
+                <h3>Security Surveillance Products</h3>
+            </div>
+        </div>
+    </div>
+    <a class="carousel-control-prev" href="#demo" data-slide="prev">
+        <span class="carousel-control-prev-icon"></span>
+    </a>
+    <a class="carousel-control-next" href="#demo" data-slide="next">
+        <span class="carousel-control-next-icon"></span>
+    </a>
+</div>
+
+<form method="post">
+    <div class="olContent f1"><h2 style="color:black">Search Product/Category</h2></div>
+    <div class="olSearch fr">
+        <input type="text" name="search" placeholder="Enter keyword"  class="inputComn houseText form-control" />
+        <div class="searchIcon">
+            <button type="button" class="btn btn-success"><i class="fa fa-search" aria-hidden="true"></i></button>
+        </div>
+
+    </div>
+</form>
+
+
+
+<div class="products">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="page-header">
+                <h2>Our Products<small>Trending product</small></h2>
+            </div>
+        </div>
+    </div>
+
+    <div class="row product-container">
+        @foreach (var item in Model.ListOfProducts)
+        {
+            <div class="col-md-3 col-sm-3 col-xs-6" style="margin-bottom:8px">
+                <div class="thumbnail product-item" style="height:300px">
+                    <img class="img-responsive" src="~/ProductImage/@item.p_image" title="Click to view product detail" style="cursor:pointer;height:160px;width:100%" />
+
+                    <div class="caption">
+                        <h5>@item.p_name</h5>
+                        <p>₹@item.p_price </p>
+                        <p>
+                            @if (item.p_quantity > 0)
+                            {
+                                using (Html.BeginForm("AddToCart", "Home", new { productId = item.p_Id }, FormMethod.Post))
+                                {
+                                    <button type="submit" class="btn btn-success pull-right"><i class="fa fa-shopping-cart"></i></button>
+
+                                }
+
+                            <p>Available</p>
+                        }
+                        else
+                        {
+                            <p>Not Available</p>
+                        }
+
+
+                            <div class="product-item-badge">
+                                @if (item.p_isFeatured == true)
+                                {
+                                    <p>New</p>
+                                }
+                                else
+                                {
+                                    <p>Old</p>
+                                }
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            }
+    </div>
+    <div class="container">
+
+        @Html.PagedListPager(Model.ListOfProducts, page => Url.Action("Index", new { page, search = Request.QueryString["search"] }))
+
+    </div>
+</div>
+
+
+
+
+<!---------contact-form-start----------->
+<section class="contactus" id="contactdiv">
+    <h1 class="text-center text-capitalize">Contact Us</h1>
+    <p class="text-center text-uppercase pt-1">we're here to help you and support you.</p>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-8 col-10 offset-2 offset-md-2 col-1">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Enter username" id="username" required autocomplete="off">
+                    </div>
+                        <div class="form-group">
+                            <input type="email" class="form-control" placeholder="Enter email" id="email" required autocomplete="off">
+                        </div>
+                            <div class="form-group">
+                                <input type="number" class="form-control" placeholder="Enter mobile number" id="mobile" required autocomplete="off">
+                            </div>
+                            <div class="form-group">
+                                <textarea class="form-control" placeholder="Enter your message" rows="4" id="comment"></textarea>
+                            </div>
+                            <div class="d-flex justify-content-center form-button">
+                                <button type="submit" class="btn btn-success">Submit</button>
+                            </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!---------contact-form-end----------------->
+

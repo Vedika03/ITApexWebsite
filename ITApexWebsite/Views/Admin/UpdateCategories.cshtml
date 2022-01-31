@@ -1,0 +1,44 @@
+﻿@model ITApexWebsite.Models.CategoryDetail 
+@{
+    ViewBag.Title = "UpdateCategories";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<main>
+    <div class="container-fluid">
+        <h1 class="mt-4">Tables</h1>
+        <ol class="breadcrumb mb-4">
+            <li class="breadcrumb-item ">Category</li>
+            <li class="breadcrumb-item active">Add New Category</li>
+        </ol>
+        <div class="card mb-4">
+
+        </div>
+        <div class="card mb-4">
+            <div class="card-header">
+                <i class="fas fa-table me-1"></i>
+                Add New Category         
+            </div>
+            <div class="card-body">
+                @using (Html.BeginForm("UpdateCategories", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                {
+                @Html.HiddenFor(m => m.c_Id)
+                <div class="form-group">
+                    <label class="control-label"><b>Category Name</b></label><br/>
+                    
+
+                @Html.TextBoxFor(m => m.c_name, new { @class = "form-control", required = "required", autofocus = "autofocus", placeholder = "Enter Category Name" })
+                @Html.ValidationMessageFor(m => m.c_name, "", new { @class = "text-danger" })
+                </div>
+                <br/>
+
+                <a onclick="window.history.back();" class="btn btn-danger">Cancel</a>
+                <input type="submit" class="btn btn-primary" value="Save"/>
+                }
+
+                </div>
+                
+            </div>
+    </div>
+    </main>
+
