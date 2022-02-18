@@ -18,8 +18,11 @@ namespace ITApexWebsite.Models
         public Nullable<bool> isdelete { get; set; }
     }
 
+
     public class ProductDetails
     {
+        
+
         public int p_Id { get; set; }
 
         [Required(ErrorMessage = "Product Name required")]
@@ -40,10 +43,15 @@ namespace ITApexWebsite.Models
         [Required]
         [Range(typeof(int),"1","20000000",ErrorMessage ="Invalid Price")]
         public Nullable<int> p_price { get; set; }
+
         public Nullable<System.DateTime> p_createdDate { get; set; }
+
         public Nullable<System.DateTime> p_modifiedDate { get; set; }
+
         public Nullable<bool> p_isFeatured { get; set; }
+
         public Nullable<bool> isActive { get; set; }
+
         public Nullable<bool> isDelete { get; set; }
         [Required]
         [Range(1,50)]

@@ -12,5 +12,7 @@ namespace ITApexWebsite.Models.Home
 
         public int Quantity { get; set; }
 
+        public string p_image { get; set; }
+
     }
 }

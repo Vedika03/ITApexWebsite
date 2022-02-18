@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ITApexWebsite.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
@@ -6,9 +7,10 @@ using System.Web;
 
 namespace ITApexWebsite.Repository
 {
-    public interface IRepository<Tbl_Entity> where Tbl_Entity:class
+    public interface IRepository<Tbl_Entity> where Tbl_Entity : class
     {
         IEnumerable<Tbl_Entity> GetProduct();
+        IEnumerable<Tbl_Entity> GetCategory();
         IEnumerable<Tbl_Entity> GetAllRecords();
         IQueryable<Tbl_Entity> GetAllRecordsIQueryable();
         int GetAllRecordsCount();
@@ -25,5 +27,6 @@ namespace ITApexWebsite.Repository
         IEnumerable<Tbl_Entity> GetresultBySqlProcedure(string query, params object[] parameters);
 
         IEnumerable<Tbl_Entity> GetRecordsToShow(int PageNo, int PageSize, int CurrentPage, Expression<Func<Tbl_Entity, bool>> wherePredict, Expression<Func<Tbl_Entity, int>> orderByPredict);
+
     }
 }

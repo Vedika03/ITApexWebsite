@@ -22,8 +22,12 @@ namespace ITApexWebsite.Models
         public Nullable<int> p_quantity { get; set; }
         public Nullable<int> p_fk_user { get; set; }
         public Nullable<int> p_fk_Category { get; set; }
+        public Nullable<bool> isActive { get; set; }
+        public Nullable<bool> isDelete { get; set; }
+        public Nullable<System.DateTime> p_createdDate { get; set; }
+        public Nullable<System.DateTime> p_modifiedDate { get; set; }
     
-        public virtual tblUser tblUser { get; set; }
         public virtual tblCategory tblCategory { get; set; }
+        public virtual tblUser tblUser { get; set; }
     }
 }

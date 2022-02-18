@@ -1,0 +1,154 @@
+﻿@model ITApexWebsite.Models.tblProduct_u
+
+@{
+    ViewBag.Title = "ProductAdd";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+<div class="container-fluid">
+    <h2>ProductAdd</h2>
+
+    @using (Html.BeginForm("ProductAdd", "User", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+    <h4>tblProduct_u</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+    <div class="col-md-3">
+        <div class="form-group">
+            @Html.LabelFor(model => model.p_name, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.p_name, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.p_name, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+
+
+    @{
+        List<SelectListItem> data = ViewBag.CategoryList;
+
+    }
+    <div class="col-md-3">
+        <div class="form-group">
+            @Html.LabelFor(model => model.p_fk_Category, "p_fk_Category", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.p_fk_Category, data, "---Select ---")
+                @Html.ValidationMessageFor(model => model.p_fk_Category, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+
+
+    <div class="col-md-3">
+        <div class="form-group">
+            @Html.LabelFor(model => model.p_img, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @*@Html.EditorFor(model => model.p_image, new { htmlAttributes = new { @class = "form-control" } })*@
+
+                <input type="file" name="file" id="file" style="width:100%;" />
+
+                @Html.ValidationMessageFor(model => model.p_img, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="form-group">
+            @Html.LabelFor(model => model.p_price, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.p_price, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.p_price, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="form-group">
+            @Html.LabelFor(model => model.p_desc, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.p_desc, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.p_desc, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="form-group">
+            @Html.LabelFor(model => model.p_quantity, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.p_quantity, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.p_quantity, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+
+
+
+
+    @Html.HiddenFor(model => model.p_fk_user)
+
+    @*<div class="col-md-3">
+            <div class="form-group">
+                @Html.LabelFor(model => model.p_fk_user, "p_fk_user", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownListFor(model => model.p_fk_user, data, "---Select ---")
+                    @Html.ValidationMessageFor(model => model.p_fk_user, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>*@
+
+
+
+
+
+    <div class="col-md-3">
+        <div class="form-group">
+            @Html.LabelFor(model => model.isActive, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <div class="checkbox">
+                    @Html.CheckBox("isActive")
+                    @Html.ValidationMessageFor(model => model.isActive, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    @Html.HiddenFor(model => model.isDelete)
+
+
+    @*<div class="form-group">
+            <div class="form-group">
+                @Html.LabelFor(model => model.p_createdDate, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.p_createdDate, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.p_createdDate, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.p_modifiedDate, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.p_modifiedDate, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.p_modifiedDate, "", new { @class = "text-danger" })
+            </div>
+        </div>*@
+    <div class="form-group">
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-success" />
+            </div>
+        </div>
+    </div>
+</div>
+    }
+    </div>
+
+    <div>
+        @Html.ActionLink("Back to List", "Index")
+    </div>

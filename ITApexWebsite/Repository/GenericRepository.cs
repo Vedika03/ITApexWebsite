@@ -32,6 +32,10 @@ namespace ITApexWebsite.Repository
         {
             return _dbSet.ToList();
         }
+        public IEnumerable<Tbl_Entity> GetCategory()
+        {
+            return _dbSet.ToList();
+        }
 
         public IEnumerable<Tbl_Entity> GetAllRecords()
         {
@@ -131,5 +135,7 @@ namespace ITApexWebsite.Repository
         {
             _dbSet.Where(wherePredict).ToList().ForEach(ForeachPredict);
         }
+
+      
     }
 }

@@ -1,4 +1,5 @@
 ﻿using ITApexWebsite.Models;
+using ITApexWebsite.Models.Home;
 using ITApexWebsite.Repository;
 using Newtonsoft.Json;
 using System;
@@ -6,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 
 
 namespace ITApexWebsite.Controllers
@@ -15,6 +17,7 @@ namespace ITApexWebsite.Controllers
         DbITApexEntities db = new DbITApexEntities();
 
         public GenericUnitOfWork _unitOfWork = new GenericUnitOfWork();
+        
 
         public List<SelectListItem> GetCategory() 
         {
@@ -28,15 +31,23 @@ namespace ITApexWebsite.Controllers
         }
 
         // GET: Admin
+        //admin login
         [HttpGet]
+        
         public ActionResult Login()
         {
             return View();
         }
 
+
+        //admin login post
         [HttpPost]
         public ActionResult Login(tblAdmin admin)
         {
+            if (Session["adminName"] != null)
+            {
+                Session["adminName"] = admin.a_email.ToString();
+            }
             var verify = db.tblAdmins.Where(a => a.a_email.Equals(admin.a_email) && a.a_pass.Equals(admin.a_pass)).SingleOrDefault();
             if (verify == null)
             {
@@ -46,12 +57,16 @@ namespace ITApexWebsite.Controllers
             }
             else
             {
+                FormsAuthentication.SetAuthCookie(admin.a_email, true);
+                //Session["adminName"] = admin.a_email.ToString();
                 Session["adminId"] = verify.a_Id;
                 return RedirectToAction("Dashboard");
             }
             
         }
 
+
+        //admin dashboard
         public ActionResult Dashboard()
         {
             if (Session["adminId"] == null)
@@ -65,12 +80,24 @@ namespace ITApexWebsite.Controllers
             }
         }
 
+
+        //admin logout
         public ActionResult Logout()
         {
             Session.Abandon();
             return RedirectToAction("Login");
         }
 
+
+        //View UserInfo
+        public ActionResult UserInfo()
+        {
+            List<tblUser> allUsers = _unitOfWork.GetRepositoryInstance<tblUser>().GetAllRecordsIQueryable().Where(i => i.IsDelete == false).ToList();
+            return View(allUsers);
+
+        }
+
+        //admin categories
         public ActionResult Categories()
         {
             List<tblCategory> allcategories = _unitOfWork.GetRepositoryInstance<tblCategory>().GetAllRecordsIQueryable().Where(i => i.isdelete == false).ToList();
@@ -78,16 +105,30 @@ namespace ITApexWebsite.Controllers
         
         }
 
+        //admin add categories
         public ActionResult AddCategories()
         {
-            return UpdateCategories(0);
+            return View();
         }
 
+        //admin add categories post
+        [HttpPost]
+        public ActionResult AddCategories(tblCategory tbl)
+        {
+            _unitOfWork.GetRepositoryInstance<tblCategory>().Add(tbl);
+
+            return RedirectToAction("Categories");
+        }
+
+
+        //admin edit categories
         public ActionResult CategoryEdit(int catId)
         {
             return View(_unitOfWork.GetRepositoryInstance<tblCategory>().GetFirstorDefault(catId));
         }
 
+
+        //admin edit categories post
         [HttpPost]
         public ActionResult CategoryEdit(tblCategory tbl)
         {
@@ -95,33 +136,39 @@ namespace ITApexWebsite.Controllers
             return RedirectToAction("Categories");
         }
 
+        
 
-        public ActionResult UpdateCategories(int categoryId)
-        {
-            CategoryDetail cd;
-            if (categoryId != null)
-            {
-                cd = JsonConvert.DeserializeObject<CategoryDetail>(JsonConvert.SerializeObject(_unitOfWork.GetRepositoryInstance<tblCategory>().GetFirstorDefault(categoryId)));
-            }
-            else
-            {
-                cd = new CategoryDetail();
-            }
-            return View("UpdateCategories", cd);
+        //public ActionResult UpdateCategories(int categoryId)
+        //{
+        //    CategoryDetail cd;
+        //    if (categoryId != null)
+        //    {
+        //        cd = JsonConvert.DeserializeObject<CategoryDetail>(JsonConvert.SerializeObject(_unitOfWork.GetRepositoryInstance<tblCategory>().GetFirstorDefault(categoryId)));
+        //    }
+        //    else
+        //    {
+        //        cd = new CategoryDetail();
+        //    }
+        //    return View("UpdateCategories", cd);
 
-        }
+        //}
 
+
+        ////admin products
         public ActionResult Product()
         {
             return View(_unitOfWork.GetRepositoryInstance<tblProduct>().GetProduct());
         }
 
+        //admin edit products
         public ActionResult ProductEdit(int productId)
         {
             ViewBag.CategoryList = GetCategory();
             return View(_unitOfWork.GetRepositoryInstance<tblProduct>().GetFirstorDefault(productId));
         }
 
+
+        //admin edit products post
         [HttpPost]
         public ActionResult ProductEdit(tblProduct tbl, HttpPostedFileBase file)
         {
@@ -141,6 +188,7 @@ namespace ITApexWebsite.Controllers
             return RedirectToAction("Product");
         }
 
+        //admin add products
         public ActionResult ProductAdd()
         {
 
@@ -148,6 +196,8 @@ namespace ITApexWebsite.Controllers
             return View();
         }
 
+
+        //admin add products post
         [HttpPost]
         public ActionResult ProductAdd(tblProduct tbl, HttpPostedFileBase file)
         {
@@ -166,7 +216,13 @@ namespace ITApexWebsite.Controllers
             return RedirectToAction("Product");
         }
 
-        
+        //Get product Details
+        public ViewResult GetProductDetail(int id, int? page)
+        {
+            var data = _unitOfWork.GetRepositoryInstance<tblProduct>().GetFirstorDefault(id);
+            return View(data);
+        }
+
 
     }
 }

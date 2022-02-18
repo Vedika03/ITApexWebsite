@@ -25,7 +25,7 @@ namespace ITApexWebsite.Models
         public int u_Id { get; set; }
         public string u_name { get; set; }
         public string u_email { get; set; }
-        public int u_contact { get; set; }
+        public string u_contact { get; set; }
         public string u_pass { get; set; }
         public Nullable<System.DateTime> u_CreatedOn { get; set; }
         public Nullable<System.DateTime> u_ModifiedOn { get; set; }

@@ -1,0 +1,24 @@
+﻿
+@model IEnumerable<ITApexWebsite.Models.tblCategory>
+
+
+
+@{
+      
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Categories
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                @foreach (var item in Model)
+                {
+                    <a class="dropdown-item" href="#">@Html.ActionLink(item.c_name, "DisplayProduct", "Home",new {page=1,category=item.c_Id},null)</a>
+                }
+
+
+            </div>
+        </li>
+
+   
+}
+

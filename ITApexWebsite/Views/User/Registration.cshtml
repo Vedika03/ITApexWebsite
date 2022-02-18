@@ -34,7 +34,7 @@
                         @Html.EditorFor(model => model.u_name, new { htmlAttributes = new { @type = "text", @class = "user", @value = "Enter Your Name", @placeholder = "Enter your name" } })
                         @Html.ValidationMessageFor(model => model.u_name)
 
-                        @Html.EditorFor(model => model.u_email, new { htmlAttributes = new { @type = "text", @class = "user", @value = "Enter Your Email-id",  @placeholder = "Enter your Email-ID" } })
+                        @Html.EditorFor(model => model.u_email, new { htmlAttributes = new { @type = "text", @class = "user", @value = "Enter Your Email-id", @placeholder = "Enter your Email-ID" } })
                         @Html.ValidationMessageFor(model => model.u_email)
 
                         @Html.EditorFor(model => model.u_contact, new { htmlAttributes = new { @type = "text", @class = "user", @value = "Enter Your Contact number", @placeholder = "Enter your Contact no." } })
@@ -44,9 +44,12 @@
                         @Html.EditorFor(model => model.u_pass, new { htmlAttributes = new { @type = "password", @class = "pass", @value = "Password", @placeholder = "Enter your password" } })
                         @Html.ValidationMessageFor(model => model.u_pass)
 
-                        @Html.EditorFor(model => model.u_pass, new { htmlAttributes = new { @type = "Confirmpassword", @class = "pass", @value = "ConfirmPassword", @placeholder = "Confirm Password" } })
+                        @Html.EditorFor(model => model.u_pass, new { htmlAttributes = new { @type = "password", @class = "pass", @value = "ConfirmPassword", @placeholder = "Confirm Password" } })
+                        @Html.ValidationMessageFor(model => model.u_pass)
 
-                        <input type="submit" value="Register" class="btn btn-success">
+                        <input type="submit" value="Register" onclick="SendEmail()" class="btn btn-success">
+                        
+
                         <div style="color:black">
                             @Html.ActionLink("If already registered", "UserLogin")
                         </div>
@@ -58,7 +61,10 @@
                 </div>
             </div>
         </div>
+
+        
     }
+    
 </body>
 </html>
 <script src="~/Scripts/jquery.validate-vsdoc.js"></script>
@@ -66,6 +72,27 @@
 <script src="~/Scripts/jquery.validate.min.js"></script>
 <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
 <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+<script>
+
+    var SendEmail = function () {
+        $.ajax(
+            {
+                type: "post",
+                url: "/User/RegisterConfirm",
+
+                success: function (data) {
+                    if (data == true) {
+                        alert("Success");
+                    }
+                    else {
+                        alert("Failure");
+                    }
+                    
+                }
+
+                })
+    }
+</script>
 
 
 

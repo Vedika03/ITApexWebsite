@@ -1,9 +1,9 @@
 ﻿@model ITApexWebsite.Models.Home.HomeIndexViewModel
+
 @using PagedList;
 @using PagedList.Mvc;
-
 @{
-    ViewBag.Title = "ITProduct";
+    ViewBag.Title = "DisplayProduct";
     Layout = "~/Views/Shared/_ITProductLayout.cshtml";
 }
 
@@ -25,11 +25,12 @@
 
                 <div class="caption">
                     <h5>@item.p_name</h5>
+                    @*<h5>@Html.ActionLink(item.p_name, "DisplayProduct", new { id = item.p_Id })</h5>*@
                     <p>₹@item.p_price </p>
                     <p>
                         @if (item.p_quantity > 0)
                         {
-                            using (Html.BeginForm("AddToCart","Home", new { productId = item.p_Id }, FormMethod.Post))
+                            using (Html.BeginForm("AddToCart", "Home", new { productId = item.p_Id }, FormMethod.Post))
                             {
                                 <button type="submit" class="btn btn-success pull-right"><i class="fa fa-shopping-cart"></i></button>
 
@@ -61,12 +62,9 @@
         }
 </div>
 
+<div class="container">
 
-<div class="pagination">
-
-    @Html.PagedListPager(Model.ListOfProducts, page => Url.Action("ITProducts", new { page, search = Request.QueryString["search"] }))
+    @Html.PagedListPager(Model.ListOfProducts, page => Url.Action("DisplayProduct", new { page=page,category=ViewBag.category}))
 
 </div>
-
-
 

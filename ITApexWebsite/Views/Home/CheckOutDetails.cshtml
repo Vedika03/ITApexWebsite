@@ -1,0 +1,63 @@
+﻿@using ITApexWebsite.Models.Home;
+@{
+    ViewBag.Title = "CheckOutDetails";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>CheckOutDetails</h2>
+
+<h2>Checkout</h2>
+@if (Session["cart"] == null)
+{
+    <div class="alert alert-danger">
+        <strong>No product added to cart!</strong>
+    </div>
+
+}
+else
+{
+    <table class="table table-bordered">
+        <thead>
+            <tr class="alert-dark">
+                <th>Product</th>
+                <th>Quantity</th>
+                <th>Price</th>
+                <th>Total</th>
+                
+            </tr>
+        </thead>
+        <tbody>
+            @{ 
+                int Total = 0;
+            }
+            @foreach (Item item in (List<Item>)Session["cart"])
+            {
+                int lineTotal = Convert.ToInt32(item.Quantity * item.Product.p_price);
+                Total = Convert.ToInt32(Total+lineTotal);
+
+                Session["sesTotal"] = Total;
+
+            <tr>
+                <td>@item.Product.p_name</td>
+
+                <td>@item.Quantity</td>
+                <td>₹@item.Product.p_price</td>
+                <td><b>₹@lineTotal</b></td>
+                @*<td>
+                    <a href="@Url.Action("AddToCart", "Home", new { productId = item.Product.p_Id, url = "Checkout" })">
+                        <i class="fa fa-plus"></i>
+                    </a>
+                    <a href="@Url.Action("DecreaseQty", "Home", new { productId = item.Product.p_Id })">
+                        <i class="fa fa-minus"></i>
+                    </a>*@
+                @*</td>*@
+            </tr>
+            }
+            <tr>
+                <td colspan="4" class="text-right"><b>Total Amount : ₹@Total</b></td>
+            </tr>
+
+        </tbody>
+    </table>
+}
+<a class="btn btn-success" href="@Url.Action("PaymentWithPaypal","Payment")">Payment >></a>

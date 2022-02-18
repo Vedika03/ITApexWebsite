@@ -18,35 +18,35 @@
         @Html.HiddenFor(model => model.c_Id)
 
         <div class="form-group">
-            @Html.LabelFor(model => model.c_name, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.c_name, "Category Name", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.c_name, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.c_name, "", new { @class = "text-danger" })
             </div>
         </div>
+        <br />
 
-        
 
         <div class="form-group">
-            @Html.LabelFor(model => model.isActive, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.isActive, "Active", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 <div class="checkbox">
-                    @Html.CheckBox("IsActive")
+                    @Html.CheckBox("Active")
                     @Html.ValidationMessageFor(model => model.isActive, "", new { @class = "text-danger" })
                 </div>
             </div>
         </div>
-
+        <br />
         <div class="form-group">
-            @Html.LabelFor(model => model.isdelete, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.isdelete, "Delete", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 <div class="checkbox">
-                    @Html.CheckBox("Isdelete")
+                    @Html.CheckBox("Delete")
                     @Html.ValidationMessageFor(model => model.isdelete, "", new { @class = "text-danger" })
                 </div>
             </div>
         </div>
-
+        <br />
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="Save" class="btn btn-success" />
@@ -55,7 +55,7 @@
     </div>
 }
     </div>
-
+<br/>
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Back to Category List", "Index")
 </div>

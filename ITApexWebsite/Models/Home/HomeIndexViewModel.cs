@@ -18,15 +18,18 @@ namespace ITApexWebsite.Models.Home
 
         public HomeIndexViewModel CreateModel(string search, int pageSize, int? page)
         {
+            
             SqlParameter[] param = new SqlParameter[]
             {
                 new SqlParameter("@search",search??(object)DBNull.Value)
             };
-            IPagedList<tblProduct> data = context.Database.SqlQuery<tblProduct>("GetBySearch @search", param).ToList().ToPagedList(page ?? 1, pageSize);
+            IPagedList<tblProduct>data = context.Database.SqlQuery<tblProduct>("GetBySearch @search", param).ToList().ToPagedList(page??1,pageSize);
             return new HomeIndexViewModel()
             {
                 ListOfProducts = data  /*_unitOfWork.GetRepositoryInstance<tblProduct>().GetAllRecords()*/
             };
         }
+
+
     }
 }
