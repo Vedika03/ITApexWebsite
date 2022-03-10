@@ -18,6 +18,7 @@ namespace ITApexWebsite.Models
         public tblProduct()
         {
             this.tblCarts = new HashSet<tblCart>();
+            this.OrderDetails = new HashSet<OrderDetail>();
         }
     
         public int p_Id { get; set; }
@@ -36,5 +37,7 @@ namespace ITApexWebsite.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblCart> tblCarts { get; set; }
         public virtual tblCategory tblCategory { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<OrderDetail> OrderDetails { get; set; }
     }
 }

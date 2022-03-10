@@ -1,0 +1,83 @@
+﻿@*@model IEnumerable<ITApexWebsite.Models.tblShippingDetail>*@
+@using ITApexWebsite.Models;
+@using PagedList;
+@using PagedList.Mvc;
+@model PagedList.IPagedList<tblShippingDetail>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            OrderDate
+        </th>
+        <th>
+            pincode
+        </th>
+
+        <th>
+            payment_type
+        </th>
+
+        <th>
+            CustomerName
+        </th>
+        <th>
+            CustomerNo
+        </th>
+        <th>
+            CustomerEmail
+        </th>
+        <th>
+            CustomerAddress
+        </th>
+        <th>
+            Status
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+<tr>
+    <td>
+        @*@Html.DisplayFor(modelItem => item.OrderDate)*@
+        @string.Format("{0:MM/dd/yyyy}", item.OrderDate);
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.pincode)
+    </td>
+
+    <td>
+        @Html.DisplayFor(modelItem => item.payment_type)
+    </td>
+
+    <td>
+        @Html.DisplayFor(modelItem => item.CustomerName)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.CustomerNo)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.CustomerEmail)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.CustomerAddress)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Status)
+    </td>
+    <td>
+        @Html.ActionLink("Details", "Details", new { id = item.shipping_Id }) |
+    </td>
+</tr>
+}
+
+</table>

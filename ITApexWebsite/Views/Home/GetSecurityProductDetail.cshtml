@@ -1,0 +1,82 @@
+﻿@model ITApexWebsite.Models.securityProduct
+
+@{
+    ViewBag.Title = "GetSecurityProductDetail";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>GetSecurityProductDetail</h2>
+<div class="container">
+    <h5 class="display-6">Product Details</h5>
+    <br />
+    <div class="row">
+
+        <div class="col-md-6">
+            <div class="container">
+                <img class="img-responsive" src="~/SecurityProductImage/@Model.s_img" width="420" height="336">
+            </div>
+        </div>
+
+
+        <div class="col-md-6">
+            <div class="row">
+                <div class="col-md-12">
+
+                    <h1>@Model.s_name</h1>
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-md-12 text-primary">
+                    <span class="label label-primary"><b>Price:</b> </span>
+                    <span class="monospaced"><b>₹@Model.s_price</b></span>
+                </div>
+            </div>
+            <br />
+            <div class="row alert-info">
+                <div class="col-md-12">
+                    <span class="label"><b>Description:</b> </span>
+                    <p class="description">
+                        <b>@Model.s_desc</b>
+                    </p>
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-md-12 text-primary">
+                    <span class="label label-primary"><b>Quantity left:</b> </span>
+                    <span class="monospaced"><b>₹@Model.s_quan</b></span>
+                </div>
+            </div>
+            <br />
+            <div class="row alert-info">
+                <div class="col-md-12">
+                    <p class="description">
+                        <span class="label label-primary">For more details contact us!</span>
+
+                    </p>
+                </div>
+            </div>
+            <br />
+
+
+            <br />
+            <div class="row">
+                <div class="col-md-4">
+                    <a class="btn btn-outline-primary" data-toggle="modal" data-target="#exampleModal">
+                        Buy now
+                    </a>
+                </div>
+                <div class="col-md-4">
+                    @using (Html.BeginForm("AddToCart", "Home", new { productId = Model.s_Id }, FormMethod.Post))
+                    {
+                        <button type="submit" class="btn btn-outline-primary pull-right"><i class="fa fa-shopping-cart"></i></button>
+
+                    }
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+

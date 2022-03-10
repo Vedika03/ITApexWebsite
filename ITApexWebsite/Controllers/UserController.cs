@@ -66,20 +66,33 @@ namespace ITApexWebsite.Controllers
         //user register
         public ActionResult Registration()
         {
+            UserReg r = new UserReg();
             return View();
         }
 
 
         //user register post
         [HttpPost]
-        public ActionResult Registration(tblUser r)
+        public ActionResult Registration(UserReg r)
         {
+            tblUser user = new tblUser();
+            
+            if(db.tblUsers.Any(u => u.u_email.Equals(r.u_email)))
+                {
+                ViewBag.DuplicateMessage = "Email-Id already exist.";
+                return View("Registration", r);
+            }
             r.IsActive = false;
-            db.tblUsers.Add(r);
-            r.u_CreatedOn = DateTime.Now;
+            
+            user.u_CreatedOn = DateTime.Now;
+            user.u_name = r.u_name;
+            user.u_email = r.u_email;
+            user.u_contact = r.u_contact;
+            user.u_pass = r.u_pass;
+            db.tblUsers.Add(user);
             db.SaveChanges();
 
-            BuildEmailTemplate(r.u_Id);
+            BuildEmailTemplate(user.u_Id);
 
             return RedirectToAction("Login");
         }
@@ -155,7 +168,38 @@ namespace ITApexWebsite.Controllers
             }
         }
 
+        //forgot password 
+        public ActionResult ForgotPassword()
+        {
+            return View();
+        }
 
+        //forgot password post
+        //[HttpPost]
+        //public ActionResult ForgotPassword(string EmailId)
+        //{
+        //    //verify email id
+        //    //Generate reset password link
+        //    //send email
+
+        //    string message = "";
+        //    bool status = false;
+
+        //    using (DbITApexEntities dbe = new DbITApexEntities())
+        //    {
+        //        var account = dbe.tblUsers.Where(x => x.u_email == EmailId).FirstOrDefault();
+        //        if (account != null)
+        //        {
+        //            //send email for reset password
+        //        }
+        //        else
+        //        {
+        //            message = "Account not found";
+        //        }
+        //    }
+
+        //    return View();
+        //}
 
         //public JsonResult SendEmailToConfirm(tblUser r)
         //{
@@ -307,6 +351,7 @@ namespace ITApexWebsite.Controllers
             //return View(stu);
         }
 
+        //Display Security Products
         public ActionResult SecondHandProducts(string search, int? page)
         {
             int pagesize = 9, pageindex = 1;
@@ -315,9 +360,11 @@ namespace ITApexWebsite.Controllers
             //var list = db.tblProduct_u.Where(Convert.ToInt32(isActive).ToString()=x => x.isActive == 1).OrderByDescending(x => x.p_id).ToList();
             IPagedList<tblProduct_u> stu = list.ToPagedList(pageindex, pagesize);
             return View(stu);
-         
 
         }
+
+       
+        //getting second hand product detail to display
         public ViewResult GetProductDetail(int? id)
         {
             
@@ -338,10 +385,8 @@ namespace ITApexWebsite.Controllers
             Session["uID"] = u.u_Id.ToString();
             return View(pd);
 
-            //var data = _unitOfWork.GetRepositoryInstance<UserProductDisplay>().GetFirstorDefault(id);
-            //return View(data);
+           
         }
-
 
 
         //// GET: User/Details/5

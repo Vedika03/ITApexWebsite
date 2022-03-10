@@ -1,0 +1,113 @@
+﻿@model ITApexWebsite.Models.tblShippingDetail
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<div>
+    <h4>Your order has been places successfully!</h4>
+    <br/>
+    <h5>Order and Shipping Detail</h5>
+    <hr />
+    <h5>Order No:@Html.DisplayFor(model => model.shipping_Id)</h5>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.pincode):@Html.DisplayFor(model => model.pincode)
+        </dt>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.payment_type): @Html.DisplayFor(model => model.payment_type)
+        </dt>
+
+
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OrderDate): @string.Format("{0:MM/dd/yyyy}", Model.OrderDate)
+        </dt>
+
+
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CustomerName):  @Html.DisplayFor(model => model.CustomerName)
+        </dt>
+
+
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CustomerNo):@Html.DisplayFor(model => model.CustomerNo)
+        </dt>
+
+
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CustomerEmail): @Html.DisplayFor(model => model.CustomerEmail)
+        </dt>
+
+
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CustomerAddress):  @Html.DisplayFor(model => model.CustomerAddress)
+        </dt>
+
+
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Status): @Html.DisplayFor(model => model.Status)
+        </dt>
+
+
+
+    </dl>
+</div>
+<table class="table">
+    <tr>
+        <th>
+            Product Name
+        </th>
+        <th>
+            Quantity
+        </th>
+        <th>
+            Price
+        </th>
+
+    </tr>
+
+
+    @{
+        int Total = 0;
+    }
+    @foreach (var item in Model.OrderDetails)
+    {
+        int lineTotal = Convert.ToInt32(item.Quantity * item.Price);
+        Total = Convert.ToInt32(Total + lineTotal);
+        <tr>
+            <td>
+                @item.tblProduct.p_name
+            </td>
+            <td>
+                @item.Quantity
+            </td>
+            <td>
+                ₹@string.Format("{0:N0}", item.Price)
+            </td>
+
+            <td>
+
+
+        </tr>
+
+    }
+    <tr>
+        <td colspan="5" class="text-right">
+    <b>Total Amount : ₹@Total</b>
+</td>
+    </tr>
+
+</table>
+
+<p class="alert-dark">Thank you for shopping with IT-Apex!</p>

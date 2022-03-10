@@ -1,0 +1,127 @@
+﻿@using ITApexWebsite.Models.Home;
+@{
+    ViewBag.Title = "CheckoutUPI";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h5><b>Scan the QR code Given below and Please enter correct amount while paying through UPI</b></h5>
+<p><b>Incase of any issue feel free to contact us!</b></p>
+
+<hr />
+
+
+@if (Session["cart"] == null)
+{
+    <div class="alert alert-danger">
+        <strong>No product added to cart!</strong>
+    </div>
+
+}
+else
+{
+    <table class="table table-bordered">
+        <thead>
+            <tr class="alert-dark">
+                <th>Product</th>
+                <th>Quantity</th>
+                <th>Price</th>
+                <th>Total</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                int Total = 0;
+            }
+            @foreach (Item item in (List<Item>)Session["cart"])
+            {
+                int lineTotal = Convert.ToInt32(item.Quantity * item.Product.p_price);
+                Total = Convert.ToInt32(Total + lineTotal);
+
+                Session["sesTotal"] = Total;
+
+                <tr>
+                    <td>@item.Product.p_name</td>
+
+                    <td>@item.Quantity</td>
+                    <td> ₹@string.Format("{0:N0}", item.Product.p_price)</td>
+                    <td><b>₹@lineTotal</b></td>
+
+                </tr>
+            }
+            <tr>
+                <td colspan="4" class="text-right"><b>Total Amount : ₹@Total</b></td>
+            </tr>
+
+        </tbody>
+    </table>
+
+    <br />
+
+    using (Html.BeginForm("UPIProcessOrder", "Home", FormMethod.Post, new { id = "customer-form" }))
+    {
+        <table class="table table-bordered">
+            <tr>
+                <td colspan="3" style="text-align:center;"><b>Customers Information</b></td>
+            </tr>
+
+            <tr>
+                <td>Customer Name:</td>
+                <td><input type="text" name="cusName" /></td>
+            </tr>
+
+            <tr>
+                <td> Contact number:</td>
+                <td><input type="text" name="cusNo" /></td>
+            </tr>
+
+            <tr>
+                <td>Email-Id:</td>
+                <td><input type="text" name="cusEMail" /></td>
+            </tr>
+
+            <tr>
+                <td>Shipping Address:</td>
+                <td><input type="text" name="cusAdd" /></td>
+            </tr>
+
+            <tr>
+                <td>Pincode:</td>
+                <td><input type="text" name="pin" /></td>
+            </tr>
+
+            <tr>
+                <td colspan="3"><input type="submit" value="Process Order" /></td>
+            </tr>
+        </table>
+    }
+
+    @*<a class="btn btn-success" href="@Url.Action("PaymentWithPaypal","Payment")">Payment >></a>*@
+}
+
+<hr />
+
+<img src="~/img/QR code.jpeg" style="height:200px ;width:200px" />
+
+<script type="text/javascript">
+    $("#customer-form").validate({
+        rules: {
+            cusName: {
+                required: true
+            },
+            cusNo: {
+                required: true
+            },
+            cusEMail: {
+                required: true
+            },
+            cusAdd: {
+                required: true
+            },
+            pin: {
+                required: true
+
+            }
+        }
+    });
+</script>

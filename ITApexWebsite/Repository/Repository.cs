@@ -10,6 +10,8 @@ namespace ITApexWebsite.Repository
     public interface IRepository<Tbl_Entity> where Tbl_Entity : class
     {
         IEnumerable<Tbl_Entity> GetProduct();
+        IEnumerable<Tbl_Entity> GetContactUs();
+        IEnumerable<Tbl_Entity> GetSecurityProduct();
         IEnumerable<Tbl_Entity> GetCategory();
         IEnumerable<Tbl_Entity> GetAllRecords();
         IQueryable<Tbl_Entity> GetAllRecordsIQueryable();

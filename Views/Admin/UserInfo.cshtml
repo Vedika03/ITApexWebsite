@@ -1,0 +1,63 @@
+﻿@model List<ITApexWebsite.Models.tblUser>
+@{
+    ViewBag.Title = "UserInfo";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<main>
+    <div class="container-fluid px-4">
+        <h1 class="mt-4">Users</h1>
+        <ol class="breadcrumb mb-4">
+            <li class="breadcrumb-item active">Users Details</li>
+        </ol>
+        <div class="card mb-4">
+
+        </div>
+        <div class="card mb-4">
+            <div class="card-header">
+                <i class="fas fa-table me-1"></i>
+                Users Details
+                @*<a href="../Admin/AddCategories" class="btn btn-info pull-right">Add New</a>*@
+            </div>
+            <div class="card-body">
+                <table id="datatablesSimple">
+                    <thead>
+                        <tr>
+                            <th>Sr. No.</th>
+                            <th>User Name</th>
+                            <th>E-mail ID</th>
+                            <th>Contact no.</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tfoot>
+                        <tr>
+                            <th>Sr. No.</th>
+                            <th>User Name</th>
+                            <th>E-mail ID</th>
+                            <th>Contact no.</th>
+                            <th>Action</th>
+                        </tr>
+                    </tfoot>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                        <tr>
+                            <td>@(Model.IndexOf(item)+1)</td>
+                            <td>@item.u_name</td>
+                            <td>@item.u_email</td>
+                            <td>@item.u_contact</td>
+                            <td>@Html.ActionLink("Edit", "CategoryEdit", new { userId = item.u_Id })</td>
+
+                        </tr>
+
+                        }
+                    </tbody>
+
+                </table>
+            </div>
+        </div>
+    </div>
+</main>
+
+

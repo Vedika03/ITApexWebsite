@@ -1,0 +1,163 @@
+﻿@model ITApexWebsite.Models.tblUser
+
+@{
+    ViewBag.Title = "Registration";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>UserRegistration</title>
+
+    <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+    <!-- //For-Mobile-Apps -->
+    <!-- Style -->
+    <link rel="stylesheet" href="~/LoginTemplate/css/style.css" type="text/css" media="all">
+    <link href="~/Content/MyLayout.css" rel="stylesheet" />
+</head>
+<body>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")
+
+    @using (Html.BeginForm())
+    {
+
+        <div class="container">
+            <h1>Registration</h1>
+            <div class="contact-form">
+                <div class="signin">
+                    <form>
+                        @*<input type="text" class="user" value="Enter Your Username" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Enter Your Username';}" />*@
+                        @Html.EditorFor(model => model.u_name, new { htmlAttributes = new { @type = "text", @class = "user", @value = "Enter Your Name", @placeholder = "Enter your name" } })
+                        @Html.ValidationMessageFor(model => model.u_name)
+
+                        @Html.EditorFor(model => model.u_email, new { htmlAttributes = new { @type = "text", @class = "user", @value = "Enter Your Email-id", @placeholder = "Enter your Email-ID" } })
+                        @Html.ValidationMessageFor(model => model.u_email)
+
+                        @Html.EditorFor(model => model.u_contact, new { htmlAttributes = new { @type = "text", @class = "user", @value = "Enter Your Contact number", @placeholder = "Enter your Contact no." } })
+                        @Html.ValidationMessageFor(model => model.u_contact)
+
+                        @*<input type="password" class="pass" value="Password" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Password';}" />*@
+                        @Html.EditorFor(model => model.u_pass, new { htmlAttributes = new { @type = "password", @class = "pass", @value = "Password", @placeholder = "Enter your password" } })
+                        @Html.ValidationMessageFor(model => model.u_pass)
+
+                        @Html.EditorFor(model => model.u_pass, new { htmlAttributes = new { @type = "password", @class = "pass", @value = "ConfirmPassword", @placeholder = "Confirm Password" } })
+                        @Html.ValidationMessageFor(model => model.u_pass)
+
+                        <input type="submit" value="Register" onclick="SendEmail()" class="btn btn-success">
+                        
+
+                        <div style="color:black">
+                            @Html.ActionLink("If already registered", "UserLogin")
+                        </div>
+
+                    </form>
+                    <div class="form-group">
+                        <p style="color:red">@ViewBag.error</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        
+    }
+    
+</body>
+</html>
+<script src="~/Scripts/jquery.validate-vsdoc.js"></script>
+<script src="~/Scripts/jquery.validate.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+<script>
+
+    var SendEmail = function () {
+        $.ajax(
+            {
+                type: "post",
+                url: "/User/RegisterConfirm",
+
+                success: function (data) {
+                    if (data == true) {
+                        alert("Success");
+                    }
+                    else {
+                        alert("Failure");
+                    }
+                    
+                }
+
+                })
+    }
+</script>
+
+
+
+@*<!DOCTYPE html>
+
+    <html>
+    <head>
+        <meta name="viewport" content="width=device-width" />
+        <title>Registration</title>
+    </head>
+    <body>
+        @Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/jqueryval")*@
+
+
+@*@using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            <h4>tblUser</h4>
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(model => model.u_name, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.u_name, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.u_name, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.u_email, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.u_email, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.u_email, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.u_contact, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.u_contact, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.u_contact, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.u_pass, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.u_pass, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.u_pass, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Create" class="btn btn-default" />
+                </div>
+            </div>
+        </div>
+    }*@
+
+@*<div>
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    </body>
+    </html>*@

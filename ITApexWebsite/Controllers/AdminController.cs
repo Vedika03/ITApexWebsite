@@ -18,7 +18,7 @@ namespace ITApexWebsite.Controllers
 
         public GenericUnitOfWork _unitOfWork = new GenericUnitOfWork();
         
-
+        //get category list
         public List<SelectListItem> GetCategory() 
         {
             List<SelectListItem> list = new List<SelectListItem>();
@@ -44,6 +44,7 @@ namespace ITApexWebsite.Controllers
         [HttpPost]
         public ActionResult Login(tblAdmin admin)
         {
+            Session["adminName"] = admin.a_email.ToString();
             if (Session["adminName"] != null)
             {
                 Session["adminName"] = admin.a_email.ToString();
@@ -96,6 +97,13 @@ namespace ITApexWebsite.Controllers
             return View(allUsers);
 
         }
+        //View Contact us 
+        public ActionResult ContactUsInfo()
+        {
+            return View(_unitOfWork.GetRepositoryInstance<tblContactU>().GetContactUs());
+           
+
+        }
 
         //admin categories
         public ActionResult Categories()
@@ -136,28 +144,16 @@ namespace ITApexWebsite.Controllers
             return RedirectToAction("Categories");
         }
 
-        
-
-        //public ActionResult UpdateCategories(int categoryId)
-        //{
-        //    CategoryDetail cd;
-        //    if (categoryId != null)
-        //    {
-        //        cd = JsonConvert.DeserializeObject<CategoryDetail>(JsonConvert.SerializeObject(_unitOfWork.GetRepositoryInstance<tblCategory>().GetFirstorDefault(categoryId)));
-        //    }
-        //    else
-        //    {
-        //        cd = new CategoryDetail();
-        //    }
-        //    return View("UpdateCategories", cd);
-
-        //}
-
-
-        ////admin products
+        //admin products
         public ActionResult Product()
         {
             return View(_unitOfWork.GetRepositoryInstance<tblProduct>().GetProduct());
+        }
+
+        ////admin security products
+        public ActionResult securityProduct()
+        {
+            return View(_unitOfWork.GetRepositoryInstance<securityProduct>().GetProduct());
         }
 
         //admin edit products
@@ -167,6 +163,7 @@ namespace ITApexWebsite.Controllers
             return View(_unitOfWork.GetRepositoryInstance<tblProduct>().GetFirstorDefault(productId));
         }
 
+       
 
         //admin edit products post
         [HttpPost]
@@ -186,6 +183,33 @@ namespace ITApexWebsite.Controllers
 
             _unitOfWork.GetRepositoryInstance<tblProduct>().Update(tbl);
             return RedirectToAction("Product");
+        }
+
+        //admin security Product Edit
+        public ActionResult securityProductEdit(int productId)
+        {
+            ViewBag.CategoryList = GetCategory();
+            return View(_unitOfWork.GetRepositoryInstance<securityProduct>().GetFirstorDefault(productId));
+        }
+
+        //admin security edit products post
+        [HttpPost]
+        public ActionResult securityProductEdit(securityProduct tbl, HttpPostedFileBase file)
+        {
+            string pic = null;
+            if (file != null)
+            {
+                pic = System.IO.Path.GetFileName(file.FileName);
+                string path = System.IO.Path.Combine(Server.MapPath("~/SecurityProductImage/"), pic);
+                // file is uploaded
+                file.SaveAs(path);
+            }
+            tbl.s_img = file != null ? pic : tbl.s_img;
+
+            tbl.s_modifiedDate = DateTime.Now;
+
+            _unitOfWork.GetRepositoryInstance<securityProduct>().Update(tbl);
+            return RedirectToAction("securityProduct");
         }
 
         //admin add products
@@ -215,6 +239,35 @@ namespace ITApexWebsite.Controllers
             _unitOfWork.GetRepositoryInstance<tblProduct>().Add(tbl);
             return RedirectToAction("Product");
         }
+
+      
+
+        //admin add SecurityProducts
+        public ActionResult securityProductAdd()
+        {
+            return View();
+        }
+
+
+        //admin add SecurityProducts post
+        [HttpPost]
+        public ActionResult securityProductAdd(securityProduct tbl, HttpPostedFileBase file)
+        {
+            string pic = null;
+            if (file != null)
+            {
+                pic = System.IO.Path.GetFileName(file.FileName);
+                string path = System.IO.Path.Combine(Server.MapPath("~/SecurityProductImage/"), pic);
+                // file is uploaded
+                file.SaveAs(path);
+            }
+            tbl.s_img = pic;
+
+            tbl.s_createdDate = DateTime.Now;
+            _unitOfWork.GetRepositoryInstance<securityProduct>().Add(tbl);
+            return RedirectToAction("securityProduct");
+        }
+
 
         //Get product Details
         public ViewResult GetProductDetail(int id, int? page)

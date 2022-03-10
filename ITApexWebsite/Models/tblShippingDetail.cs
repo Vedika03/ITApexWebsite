@@ -14,17 +14,25 @@ namespace ITApexWebsite.Models
     
     public partial class tblShippingDetail
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public tblShippingDetail()
+        {
+            this.OrderDetails = new HashSet<OrderDetail>();
+        }
+    
         public int shipping_Id { get; set; }
-        public Nullable<int> shipping_fk_user { get; set; }
-        public string address { get; set; }
-        public string city { get; set; }
-        public string state { get; set; }
-        public string country { get; set; }
         public string pincode { get; set; }
         public Nullable<int> order_Id { get; set; }
         public Nullable<decimal> amount_paid { get; set; }
         public string payment_type { get; set; }
+        public Nullable<System.DateTime> OrderDate { get; set; }
+        public string CustomerName { get; set; }
+        public string CustomerNo { get; set; }
+        public string CustomerEmail { get; set; }
+        public string CustomerAddress { get; set; }
+        public string Status { get; set; }
     
-        public virtual tblUser tblUser { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<OrderDetail> OrderDetails { get; set; }
     }
 }

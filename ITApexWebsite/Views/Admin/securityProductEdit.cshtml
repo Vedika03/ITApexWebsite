@@ -1,0 +1,147 @@
+﻿@model ITApexWebsite.Models.securityProduct
+
+@{
+    ViewBag.Title = "securityProductEdit";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>securityProductEdit</h2>
+<div class="container">
+
+    <h2>Product</h2>
+
+    @using (Html.BeginForm("securityProductEdit", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken()
+
+        <div>
+
+            <h4>Edit Product Details</h4>
+
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.s_Id)
+
+            <div class="col-md-3">
+                <div class="form-group">
+
+                    @Html.LabelFor(model => model.s_name, "Product Name", htmlAttributes: new { @class = "control-label col-md-2", @type = "text", @value = "Enter Product Name", @placeholder = "Product Name" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.s_name, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.s_name, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+            </div>
+            <br />
+        
+            <div class="col-md-3">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.s_img, "Upload Image", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        <input type="file" name="file" id="file" style="width:100%;" />
+                        @*@Html.ValidationMessageFor(model => model.p_image, "", new { @class = "text-danger" })*@
+                    </div>
+                </div>
+            </div>
+            <br />
+
+            <div class="col-md-3">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.s_desc, "Add product Description", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.s_desc, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.s_desc, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+            <br />
+            <div class="col-md-3">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.s_quan, "Quantity", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.s_quan, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.s_quan, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+            <br />
+            <div class="col-md-3">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.s_price, "Price", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.s_price, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.s_price, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+            <br />
+            <div class="col-md-3">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.s_createdDate, "Created Date", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.s_createdDate, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.s_createdDate, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+            <br />
+            @Html.HiddenFor(model => model.s_modifiedDate)
+            @*<div class="col-md-3">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.p_modifiedDate, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.p_modifiedDate, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.p_modifiedDate, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>*@
+
+
+
+            <div class="col-md-3">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.isFeatured, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        <div class="checkbox">
+                            @Html.CheckBox("IsFeatured")
+                            @Html.ValidationMessageFor(model => model.isFeatured, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br />
+            <div class="col-md-3">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.isActice, "Active", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        <div class="checkbox">
+                            @Html.CheckBox("IsActive")
+                            @Html.ValidationMessageFor(model => model.isActice, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br />
+            @Html.HiddenFor(model => model.isDelete)
+
+
+
+
+            <div class="col-md-2">
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-6">
+                        <input type="submit" value="Save" class="btn btn-success" />
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    }
+</div>
+<br />
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+

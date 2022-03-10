@@ -4,6 +4,10 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+
+<br/>
+<br />
+<br />
 <h2>Checkout</h2>
 @if (Session["cart"] == null)
 {
@@ -20,6 +24,7 @@ else
                 <th>Image</th>
                 <th>Product</th>
                 <th>Quantity</th>
+                <th>Price</th>
 
                 <th>Add</th>
             </tr>
@@ -28,15 +33,16 @@ else
             @foreach (Item item in (List<Item>)Session["cart"])
             {
                 <tr>
-                    <td> <img class="img-responsive" src="~/ProductImage/@Path.GetFileName(@item.p_image)" height="50" width="50"></td>
+                    <td> <img src="~/ProductImage/@item.Product.p_image" style="height:50px" width="65"/></td>
                     <td>@item.Product.p_name</td>
 
                     <td>@item.Quantity</td>
+                    <td>@item.Product.p_price</td>
                     <td>
                         <a href="@Url.Action("AddToCart", "Home", new { productId = item.Product.p_Id, url = "CheckOut" })">
                             <i class="fa fa-plus"></i>
                         </a>
-                        <a href="@Url.Action("DecreaseQty", "Home", new { productId = item.Product.p_Id, url = "CheckOut"  })">
+                        <a href="@Url.Action("RemoveFromCart", "Home", new { productId = item.Product.p_Id, url = "CheckOut"  })">
                             <i class="fa fa-minus"></i>
                         </a>
                     </td>
@@ -48,5 +54,9 @@ else
     </table>
 }
 <a class="btn btn-success" href="@Url.Action("CheckoutDetails","Home")">Checkout >></a>
+
+<a class="btn btn-success" href="@Url.Action("CheckoutUPI","Home")">Checkout with UPI >></a>
+
+<a class="btn btn-info" href="@Url.Action("Index","Home")">Continue Shopping</a>
 
 

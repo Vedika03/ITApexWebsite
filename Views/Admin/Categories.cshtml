@@ -1,0 +1,59 @@
+﻿@model List<ITApexWebsite.Models.tblCategory>
+@{
+    ViewBag.Title = "Categories";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<main>
+    <div class="container-fluid px-4">
+        <h1 class="mt-4">Category</h1>
+        <ol class="breadcrumb mb-4">
+            <li class="breadcrumb-item active">Category Details</li>
+        </ol>
+        <div class="card mb-4">
+            
+        </div>
+        <div class="card mb-4">
+            <div class="card-header">
+                <i class="fas fa-table me-1"></i>
+                Category Details
+                <a href="../Admin/AddCategories" class="btn btn-info pull-right">Add New</a>
+            </div>
+            <div class="card-body">
+                <table id="datatablesSimple">
+                    <thead>
+                        <tr>
+                            <th>Sr. No.</th>
+                            <th>Category Name</th>
+                            <th>Action</th>
+                            
+                        </tr>
+                    </thead>
+                    <tfoot>
+                        <tr>
+                            <th>Sr. No.</th>
+                            <th>Category Name</th>
+                            <th>Action</th>
+                        </tr>
+                    </tfoot>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                        <tr>
+                            <td>@(Model.IndexOf(item) + 1)</td>
+                            <td>@item.c_name</td>
+                            <td>@Html.ActionLink("Edit", "CategoryEdit", new { catId = item.c_Id })</td>
+                              
+                            
+                        </tr>
+
+                        }
+                    </tbody>
+
+                </table>
+            </div>
+        </div>
+      </div>  
+</main>
+
+

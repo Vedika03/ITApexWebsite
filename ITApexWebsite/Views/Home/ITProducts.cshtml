@@ -19,19 +19,22 @@
 <div class="row product-container">
     @foreach (var item in Model.ListOfProducts)
     {
-        <div class="col-md-3 col-sm-3 col-xs-6" style="margin-bottom:8px">
-            <div class="thumbnail product-item" style="height:300px">
+        <div class="col-md-3 col-sm-3 col-xs-6 thumb " style="margin-bottom:8px">
+            <div class="thumbnail product-item" style="height:400px">
                 <img class="img-responsive" src="~/ProductImage/@item.p_image" title="Click to view product detail" style="cursor:pointer;height:160px;width:100%" />
 
                 <div class="caption">
                     <h5>@item.p_name</h5>
                     <p>₹@item.p_price </p>
+                    <div class="btn-block">
+                        <a href="/Admin/GetProductDetail/@item.p_Id" class="btn btn-block btn-outline-primary">View Details</a>
+                    </div>
                     <p>
                         @if (item.p_quantity > 0)
                         {
-                            using (Html.BeginForm("AddToCart","Home", new { productId = item.p_Id }, FormMethod.Post))
+                            using (Html.BeginForm("AddToCart", "Home", new { productId = item.p_Id }, FormMethod.Post))
                             {
-                                <button type="submit" class="btn btn-success pull-right"><i class="fa fa-shopping-cart"></i></button>
+                                <button type="submit" class="btn btn-primary pull-right"><i class="fa fa-shopping-cart"></i></button>
 
                             }
 
@@ -41,6 +44,7 @@
                     {
                         <p>Not Available</p>
                     }
+
 
 
                         <div class="product-item-badge">
@@ -58,15 +62,25 @@
                 </div>
 
             </div>
+       
+
         }
+   
 </div>
 
 
 <div class="pagination">
 
-    @Html.PagedListPager(Model.ListOfProducts, page => Url.Action("ITProducts", new { page, search = Request.QueryString["search"] }))
+    @Html.PagedListPager(Model.ListOfProducts, page => Url.Action("ITProducts", new { page, search = Request.QueryString["search"], id = ViewBag.id }))
 
 </div>
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
 
 
 

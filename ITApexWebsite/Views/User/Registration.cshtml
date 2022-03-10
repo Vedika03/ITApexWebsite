@@ -1,4 +1,4 @@
-﻿@model ITApexWebsite.Models.tblUser
+﻿@model ITApexWebsite.Models.UserReg
 
 @{
     ViewBag.Title = "Registration";
@@ -32,12 +32,15 @@
                     <form>
                         @*<input type="text" class="user" value="Enter Your Username" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Enter Your Username';}" />*@
                         @Html.EditorFor(model => model.u_name, new { htmlAttributes = new { @type = "text", @class = "user", @value = "Enter Your Name", @placeholder = "Enter your name" } })
+                       <br/>
                         @Html.ValidationMessageFor(model => model.u_name)
 
                         @Html.EditorFor(model => model.u_email, new { htmlAttributes = new { @type = "text", @class = "user", @value = "Enter Your Email-id", @placeholder = "Enter your Email-ID" } })
+                        <br />
                         @Html.ValidationMessageFor(model => model.u_email)
 
                         @Html.EditorFor(model => model.u_contact, new { htmlAttributes = new { @type = "text", @class = "user", @value = "Enter Your Contact number", @placeholder = "Enter your Contact no." } })
+                        <br />
                         @Html.ValidationMessageFor(model => model.u_contact)
 
                         @*<input type="password" class="pass" value="Password" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Password';}" />*@
@@ -48,10 +51,15 @@
                         @Html.ValidationMessageFor(model => model.u_pass)
 
                         <input type="submit" value="Register" onclick="SendEmail()" class="btn btn-success">
-                        
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-2">
+                                <p style="color:red">@ViewBag.DuplicateMessage</p>
+                            </div>
+
+                        </div>
 
                         <div style="color:black">
-                            @Html.ActionLink("If already registered", "UserLogin")
+                            @Html.ActionLink("If already registered", "Login")
                         </div>
 
                     </form>

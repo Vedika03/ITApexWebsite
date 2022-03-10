@@ -26,18 +26,14 @@ namespace ITApexWebsite.Models
         }
     
         public virtual DbSet<tblAdmin> tblAdmins { get; set; }
-        public virtual DbSet<tbl_SlideImage> tbl_SlideImage { get; set; }
         public virtual DbSet<tblCart> tblCarts { get; set; }
-        public virtual DbSet<tblCartStatu> tblCartStatus { get; set; }
-        public virtual DbSet<tblMemberRole> tblMemberRoles { get; set; }
-        public virtual DbSet<tblRole> tblRoles { get; set; }
-        public virtual DbSet<tblShippingDetail> tblShippingDetails { get; set; }
-        public virtual DbSet<tblCategory_u> tblCategory_u { get; set; }
         public virtual DbSet<tblProduct> tblProducts { get; set; }
         public virtual DbSet<tblCategory> tblCategories { get; set; }
         public virtual DbSet<tblProduct_u> tblProduct_u { get; set; }
         public virtual DbSet<tblUser> tblUsers { get; set; }
-
-        public System.Data.Entity.DbSet<ITApexWebsite.Models.UserProductDisplay> UserProductDisplays { get; set; }
+        public virtual DbSet<OrderDetail> OrderDetails { get; set; }
+        public virtual DbSet<tblShippingDetail> tblShippingDetails { get; set; }
+        public virtual DbSet<securityProduct> securityProducts { get; set; }
+        public virtual DbSet<tblContactU> tblContactUs { get; set; }
     }
 }

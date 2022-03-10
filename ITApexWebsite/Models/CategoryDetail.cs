@@ -31,6 +31,7 @@ namespace ITApexWebsite.Models
         public string p_name { get; set; }
 
         [Required(ErrorMessage = "Product Image required")]
+        
         public string p_image { get; set; }
 
         [Required(ErrorMessage ="description is required")]

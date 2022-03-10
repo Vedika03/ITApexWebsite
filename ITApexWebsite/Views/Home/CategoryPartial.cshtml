@@ -12,7 +12,7 @@
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                 @foreach (var item in Model)
                 {
-                    <a class="dropdown-item" href="#">@Html.ActionLink(item.c_name, "DisplayProduct", "Home",new {page=1,category=item.c_Id},null)</a>
+                    <a class="dropdown-item" href="@Url.Action("DisplayProduct", "Home",new {page=1,id=@item.c_Id},null)">@item.c_name</a>
                 }
 
 

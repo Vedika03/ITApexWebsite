@@ -1,0 +1,5 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <setParameter name="IIS Web Application Name" value="IT-Apex" />
+  <setParameter name="DbITApexEntities-Web.config Connection String" value="metadata=res://*/Models.ITApexModel.csdl|res://*/Models.ITApexModel.ssdl|res://*/Models.ITApexModel.msl;provider=System.Data.SqlClient;provider connection string=&quot;data source=(LocalDB)\MSSQLLocalDB;attachdbfilename=|DataDirectory|\DbITApex.mdf;integrated security=True;MultipleActiveResultSets=True;App=EntityFramework&quot;" />
+</parameters>

@@ -1,0 +1,62 @@
+﻿@model List<ITApexWebsite.Models.tblContactU>
+
+@{
+    ViewBag.Title = "ContactUsInfo";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>ContactUsInfo</h2>
+
+<main>
+    <div class="container-fluid px-4">
+        <h1 class="mt-4">Users Messages/Queries</h1>
+        <ol class="breadcrumb mb-4">
+            <li class="breadcrumb-item active">Details</li>
+        </ol>
+        <div class="card mb-4">
+
+        </div>
+        <div class="card mb-4">
+            
+            <div class="card-body">
+                <table id="datatablesSimple">
+                    <thead>
+                        <tr>
+                            <th>Sr. No.</th>
+                            <th>Customer Name</th>
+                            <th>Customer Email-Id</th>
+                            <th>Customer Contact-No</th>
+                            <th>Meesage/Query</th>
+
+                        </tr>
+                    </thead>
+                    <tfoot>
+                        <tr>
+                            <th>Sr. No.</th>
+                            <th>Product Name</th>
+                            <th>Action</th>
+                        </tr>
+                    </tfoot>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                           
+                            <tr>
+                                <td>@(Model.IndexOf(item) + 1)</td>
+                                <td>@item.name</td>
+                                <td>@item.email</td>
+                                <td>@item.contact_no</td>
+                                <td>@item.message</td>
+
+                            </tr>
+                           
+
+                        }
+
+                    </tbody>
+
+                </table>
+            </div>
+        </div>
+    </div>
+</main>

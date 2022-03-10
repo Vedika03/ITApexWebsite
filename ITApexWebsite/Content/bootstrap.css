@@ -254,6 +254,7 @@ th {
   }
   .navbar {
     display: none;
+    position:fixed;
   }
   .btn > .caret,
   .dropup > .btn > .caret {
@@ -1131,9 +1132,13 @@ img {
 .thumbnail a > img,
 .carousel-inner > .item > img,
 .carousel-inner > .item > a > img {
-  display: block;
-  max-width: 100%;
-  height: auto;
+    display: block;
+   
+    max-width: 100%;
+    height: auto;
+    overflow: hidden;
+    overflow-x: hidden;
+    overflow-y: hidden;
 }
 .img-rounded {
   border-radius: 6px;
@@ -6325,7 +6330,7 @@ button.close {
   position: absolute;
 }
 .carousel-inner {
-  position: absolute;
+  position: relative;
   width: 100%;
   overflow: hidden;
 }

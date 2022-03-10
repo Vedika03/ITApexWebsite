@@ -1,0 +1,53 @@
+﻿@using ITApexWebsite.Models.Home
+@{
+    ViewBag.Title = "Checkout";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Checkout</h2>
+@if (Session["cart"] == null)
+{
+    <div class="alert alert-danger">
+        <strong>No product added to cart!</strong>
+    </div>
+
+}
+else
+{
+    <table class="table table-bordered">
+        <thead>
+            <tr class="alert-dark">
+                <th>Image</th>
+                <th>Product</th>
+                <th>Quantity</th>
+
+                <th>Add</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (Item item in (List<Item>)Session["cart"])
+            {
+                <tr>
+                    <td> <img class="img-responsive" src="~/ProductImage/@Path.GetFileName(@item.p_image)" height="50" width="50"></td>
+                    <td>@item.Product.p_name</td>
+
+                    <td>@item.Quantity</td>
+                    <td>
+                        <a href="@Url.Action("AddToCart", "Home", new { productId = item.Product.p_Id, url = "CheckOut" })">
+                            <i class="fa fa-plus"></i>
+                        </a>
+                        <a href="@Url.Action("DecreaseQty", "Home", new { productId = item.Product.p_Id, url = "CheckOut"  })">
+                            <i class="fa fa-minus"></i>
+                        </a>
+                    </td>
+                </tr>
+            }
+
+
+        </tbody>
+    </table>
+}
+<a class="btn btn-success" href="@Url.Action("CheckoutDetails","Home")">Checkout >></a>
+<a class="btn btn-info" href="@Url.Action("Index","Home")">Continue Shopping</a>
+
+

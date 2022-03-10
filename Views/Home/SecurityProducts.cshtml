@@ -1,0 +1,99 @@
+﻿@model IEnumerable<ITApexWebsite.Models.securityProduct>
+
+@{
+    ViewBag.Title = "SecurityProducts";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>SecurityProducts</h2>
+
+@*<p>
+        @Html.ActionLink("Create New", "Create")
+    </p>*@
+@*<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.s_name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.s_img)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.s_desc)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.s_quan)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.s_createdDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.s_modifiedDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.isFeatured)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.isActice)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.isDelete)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.s_price)
+        </th>
+        <th></th>
+    </tr>*@
+<div class="row product-container">
+    @foreach (var item in Model)
+    {
+        <div class="col-md-3 col-sm-3 col-xs-6" style="margin-bottom:8px">
+            <div class="thumbnail product-item" style="height:300px">
+                <img class="img-responsive" src="~/SecurityProductImage/@item.s_img" title="Click to view product detail" style="cursor:pointer;height:160px;width:100%" />
+                <div class="caption">
+                    <h5>@item.s_name</h5>
+                    <p>₹@item.s_price </p>
+                    <p>
+                        @if (item.s_quan > 0)
+                        {
+                            using (Html.BeginForm("AddToCart", "Home", new { productId = item.s_Id }, FormMethod.Post))
+                            {
+                                <button type="submit" class="btn btn-primary pull-right"><i class="fa fa-shopping-cart"></i></button>
+
+                            }
+
+                        <p>Available</p>
+                    }
+                    else
+                    {
+                        <p>Not Available</p>
+                    }
+
+                        <div class="btn-block">
+                            <a href="/Home/GetSecurityProductDetail/@item.s_Id" class="btn btn-block btn-outline-primary">View Details</a>
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+            </div>
+        }
+
+</div>
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />

@@ -21,31 +21,39 @@
     <title>@ViewBag.Title - IT-Apex</title>
     @*@Styles.Render("~/Content/css")*@
     @Scripts.Render("~/bundles/modernizr")
-<style type="text/css">
-    * {
-        margin: 0;
-        padding: 0;
-        font-family: 'Playfair Display', serif;
-    }
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+            font-family: 'Playfair Display', serif;
+        }
 
-    /*.carousel-inner img {
+        /*.carousel-inner img {
             width: 100%;
             height: 100%;
         }*/
 
 
-    body {
-        margin-left: 0px;
-        margin-top: 0px;
-        margin-right: 0px;
-        margin-bottom: 0px;
-    }
+        body {
+            margin-left: 0px;
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+        }
 
-    
-    .pull-right {
-        float: right !important;
-    }
 
+        .pull-right {
+            float: right !important;
+        }
+
+        .navbar {
+            position: fixed;
+            width: 100%;
+            z-index: 1000000;
+            top: 0;
+        }
     </style>
 
 
@@ -53,7 +61,7 @@
 <body>
     <header>
 
-        <nav class="navbar navbar-default navbar-fixed-top navbar-expand-lg navbar-dark bg-dark">
+        <nav class="navbar navbar-default navbar-fixed-top sticky-top navbar-expand-lg navbar-dark bg-dark">
             <div class="logo">
                 <h1><a href="#">IT<span>Apex</span></a></h1>
             </div>
@@ -67,6 +75,8 @@
                         <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
                     </li>
 
+
+
                     <li class="nav-item">
                         <a class="nav-link" href="/Home/About">About Us</a>
                     </li>
@@ -75,9 +85,9 @@
                             Services
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="#">AMCs</a>
-                            <a class="dropdown-item" href="#">Security Solution</a>
-                            <a class="dropdown-item" href="#">Repair&Maintanaince</a>
+                            <a class="dropdown-item" href="/Home/Contact">AMCs</a>
+                            <a class="dropdown-item" href="/Home/Contact">Security Solution</a>
+                            <a class="dropdown-item" href="/Home/Contact">Repair&Maintanaince</a>
                         </div>
                     </li>
 
@@ -100,7 +110,7 @@
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" href="/Home/ITProducts">IT Products</a>
-                            <a class="dropdown-item" href="#">Security survillance</a>
+                            <a class="dropdown-item" href="/Home/SecurityProducts">Security survillance</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="/User/SecondHandProducts">Second Hand Products</a>
                         </div>
@@ -110,8 +120,9 @@
                         <a class="nav-link" href="/User/Login">Sell</a>
                     </li>
 
+                 
                     <li class="nav-item dropdown">
-                        <a data-toggle="dropdown" class="nav-link dropdown-toggle" href="#">Cart <b class="caret"></b></a>
+                        <a data-toggle="dropdown" class="nav-link dropdown-toggle" href="#">Cart<b class="caret"></b></a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                             @if (Session["cart"] != null)
                             {
@@ -127,117 +138,123 @@
                             <li class="dropdown-divider"></li>
                             <li><a class="dropdown-item" href="/Home/CheckOut">Checkout</a></li>
                         </ul>
-                    
+
                     </li>
 
                     @*<li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#"><i class="fa fa-shopping-cart" aria-hidden="true"></i></a>
+                                <a class="nav-link dropdown-toggle" href="#"><i class="fa fa-shopping-cart" aria-hidden="true"></i></a>
 
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
 
-                    @if (Session["cart"] != null)
-                    {
-                        foreach (Item item in (List<Item>)Session["cart"])
-                        {
-                            <a class="dropdown-item" href="#">@item.Product.p_name (@item.Quantity)</a>
-                        }
-                    }
+                                    @if (Session["cart"] != null)
+                                    {
+                                        foreach (Item item in (List<Item>)Session["cart"])
+                                        {
+                                            <a class="dropdown-item" href="#">@item.Product.p_name (@item.Quantity)</a>
+                                        }
+                                    }
 
 
-                </div>
-        </li>*@
+                                </div>
+                        </li>*@
 
 
                     <li class="nav-item">
                         <a class="nav-link" href="/Home/Contact">Contact Us</a>
                     </li>
                 </ul>
-                </ul>
-          
+            </ul>
+
         </nav>
 
         @*NAVBAR END*@
 
-        
+
 
 
     </header>
-        <div class="container body-content">
-            @RenderBody()
-            <hr />
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+
+        <!--************* footer section starts *********-->
+
+        <footer class="footersection" id="footerid">
             
-                <!--************* footer section starts *********-->
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-4 col-md-6 col-12 footer-div text-white">
+                        <div>
+                            <h3>ABOUT IT-Apex</h3>
+                            <P class="text-white"> the world has become so fast placed that people don't want to stand by reading a page of information so they would much rather look at the presentation and undertand the message.</P>
+                        </div>
+                    </div>
 
-                <footer class="footersection" id="footerid">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-lg-4 col-md-6 col-12 footer-div text-white">
-                                <div>
-                                    <h3>ABOUT IT-Apex</h3>
-                                    <P class="text-white"> the world has become so fast placed that people don't want to stand by reading a page of information so they would much rather look at the presentation and undertand the message.</P>
-                                </div>
-                            </div>
+                    <div class="col-lg-4 col-md-6 col-12 footer-div text-center">
+                        <div>
+                            <h3>NAVIGATION LINKS</h3>
+                            <li><a href="/">Home</a></li>
+                            
+                            <li><a href="/Home/About">About</a></li>
+                            <li><a href="/Home/Contact">Contact</a></li>
+                            
+                        </div>
+                    </div>
 
-                            <div class="col-lg-4 col-md-6 col-12 footer-div text-center">
-                                <div>
-                                    <h3>NAVIGATION LINKS</h3>
-                                    <li><a href="#landingdiv">Home</a></li>
-                                    <li><a href="#featurediv">Features</a></li>
-                                    <li><a href="#aboutusdiv">About</a></li>
-                                    <li><a href="#contactdiv">Contact</a></li>
-                                    <li><a href="#">Try It!</a></li>
-                                </div>
-                            </div>
+                    <div class="col-lg-4 col-md-12 col-12 footer-div">
+                        <div>
+                            <h3>NEWS LETTER</h3>
+                            <P class="text-white">For business professionals caught between high OEM price and medicore print and graphic output.</P>
 
-                            <div class="col-lg-4 col-md-12 col-12 footer-div">
-                                <div>
-                                    <h3>NEWS LETTER</h3>
-                                    <P class="text-white">For business professionals caught between high OEM price and medicore print and graphic output.</P>
-
-                                    <div class="container newsletter-main">
-                                        <div class="row">
-                                            <div class="col-lg-8 offset-lg-2 col-12">
-                                                <div class="input-group mb-3">
-                                                    <input type="text" class="form-control news-input" placeholder="Your Email">
-                                                    <div class="input-group-append">
-                                                        <span class="input-group-text">Subscribe</span>
-                                                    </div>
-                                                </div>
+                            <div class="container newsletter-main">
+                                <div class="row">
+                                    <div class="col-lg-8 offset-lg-2 col-12">
+                                        <div class="input-group mb-3">
+                                            <input type="text" class="form-control news-input" placeholder="Your Email">
+                                            <div class="input-group-append">
+                                                <span class="input-group-text">Subscribe</span>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-
-                        <div class="social">
-                            <!--icons-->
-                            <a href="#" target="_blank"><i class="fa fa-facebook" aria-hidden="true"></i></a>
-                            <a href="#" target="_blank"><i class="fa fa-instagram" aria-hidden="true"></i></a>
-                            <a href="#" target="_blank"><i class="fa fa-twitter" aria-hidden="true"></i></a>
-                            <a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
-                        </div>
-
-                        <div class="mt-5 text-center">
-                            <p>Copyright ©2020 All rights reserved| This website is by ITAPex.</p>
-                        </div>
-
-                        <div class="scrollTop float-right">
-                            <i class="fa fa-arrow-up" onClick="topFunction()" id="myBtn"> </i>
-                        </div>
                     </div>
-                </footer>
+                </div>
 
-                <!--************* footer section end *********-->
-           
+                <div class="social">
+                    <!--icons-->
+                    <a href="#" target="_blank"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+                    <a href="#" target="_blank"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+                    <a href="#" target="_blank"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+                    <a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
+                </div>
+
+                <div class="mt-5 text-center">
+                    <p>Copyright ©2020 All rights reserved| This website is by ITAPex.</p>
+                </div>
+
+                <div class="scrollTop float-right">
+                    <i class="fa fa-arrow-up" onClick="topFunction()" id="myBtn"> </i>
+                </div>
+            </div>
+            
+        </footer>
         </div>
 
-        @Scripts.Render("~/bundles/jquery")
-        @Scripts.Render("~/bundles/bootstrap")
-        @RenderSection("scripts", required: false)
+        <!--************* footer section end *********-->
+
+    
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
    
 </body>
 
 </html>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.js"></script>
+<script src="~/Scripts/jquery.validate-vsdoc.js"></script>

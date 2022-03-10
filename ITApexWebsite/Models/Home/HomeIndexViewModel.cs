@@ -15,6 +15,7 @@ namespace ITApexWebsite.Models.Home
         DbITApexEntities context = new DbITApexEntities();
 
         public IPagedList<tblProduct> ListOfProducts { get; set; }
+        public IPagedList<securityProduct> ListOfsecurityPro { get; set; }
 
         public HomeIndexViewModel CreateModel(string search, int pageSize, int? page)
         {

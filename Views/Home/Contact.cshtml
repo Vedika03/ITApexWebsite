@@ -1,0 +1,93 @@
+﻿@model ITApexWebsite.Models.tblContactU
+
+@{
+    ViewBag.Title = "Contact";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@using (Html.BeginForm())
+{
+    <section class="contactus" id="contactdiv">
+        <h1 class="text-center text-capitalize">Contact Us</h1>
+        <p class="text-center text-uppercase pt-1">we're here to help you and support you.</p>
+
+
+        @Html.AntiForgeryToken()
+
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-md-8 col-10 offset-2 offset-md-2 col-1">
+                    <hr />
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.name, "Name", htmlAttributes: new { @class ="form - control" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.name, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.name, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.email, "Email-Id", htmlAttributes: new { @class = "form - control" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.email, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.email, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.contact_no, "Contact No", htmlAttributes: new { @class = "form - control", placeholder = "Enter username" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.contact_no, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.contact_no, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.message, "Your Message", htmlAttributes: new { @class = "form - control" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.message, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.message, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="d-flex justify-content-center form-button">
+                            <input type="submit" value="Submit" class="btn btn-primary" />
+                        </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+</section>
+}
+
+
+
+@*<section class="contactus" id="contactdiv">
+    <h1 class="text-center text-capitalize">Contact Us</h1>
+    <p class="text-center text-uppercase pt-1">we're here to help you and support you.</p>
+    @using (Html.BeginForm("Contact", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-md-8 col-10 offset-2 offset-md-2 col-1">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Enter username" id="username" required autocomplete="off">
+                    </div>
+                    <div class="form-group">
+                        <input type="email" class="form-control" placeholder="Enter email" id="email" required autocomplete="off">
+                    </div>
+                    <div class="form-group">
+                        <input type="number" class="form-control" placeholder="Enter mobile number" id="mobile" required autocomplete="off">
+                    </div>
+                    <div class="form-group">
+                        <textarea class="form-control" placeholder="Enter your message" rows="4" id="comment"></textarea>
+                    </div>
+                    <div class="d-flex justify-content-center form-button">
+                        <button type="submit" class="btn btn-success">Submit</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</section>*@

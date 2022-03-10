@@ -136,6 +136,14 @@ namespace ITApexWebsite.Repository
             _dbSet.Where(wherePredict).ToList().ForEach(ForeachPredict);
         }
 
-      
+        public IEnumerable<Tbl_Entity> GetSecurityProduct()
+        {
+            return _dbSet.ToList();
+        }
+
+        public IEnumerable<Tbl_Entity> GetContactUs()
+        {
+            return _dbSet.ToList();
+        }
     }
 }
