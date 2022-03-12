@@ -5,6 +5,10 @@
     Layout = "~/Views/Shared/_securityLayout.cshtml";
 }
 
+<br />
+<br />
+<br />
+
 
 
 <h2>SecurityProducts</h2>
@@ -46,12 +50,14 @@
         </th>
         <th></th>
     </tr>*@
+<br />
+
 <div class="row product-container">
     @foreach (var item in Model)
     {
         <div class="col-md-3 col-sm-3 col-xs-6" style="margin-bottom:8px">
             <div class="thumbnail product-item" style="height:300px">
-                <img class="img-responsive" src="~/SecurityProductImage/@item.s_img" title="Click to view product detail" style="cursor:pointer;height:160px;width:100%" />
+                <img class="img-responsive" src="~/SecurityProductImage/@item.s_img" title="Click to view product detail" style="cursor:pointer;height:220px;width:90%" />
                 <div class="caption">
                     <h5>@item.s_name</h5>
                     <p>₹@item.s_price </p>

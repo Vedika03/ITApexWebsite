@@ -16,6 +16,7 @@ namespace ITApexWebsite.Models.Home
 
         public IPagedList<tblProduct> ListOfProducts { get; set; }
         public IPagedList<securityProduct> ListOfsecurityPro { get; set; }
+        public IPagedList<tblContactU> ListContactUs { get; set; }
 
         public HomeIndexViewModel CreateModel(string search, int pageSize, int? page)
         {

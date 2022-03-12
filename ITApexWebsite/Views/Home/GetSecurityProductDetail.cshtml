@@ -4,8 +4,10 @@
     ViewBag.Title = "GetSecurityProductDetail";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<br />
+<br />
+<br />
 
-<h2>GetSecurityProductDetail</h2>
 <div class="container">
     <h5 class="display-6">Product Details</h5>
     <br />
@@ -13,7 +15,7 @@
 
         <div class="col-md-6">
             <div class="container">
-                <img class="img-responsive" src="~/SecurityProductImage/@Model.s_img" width="420" height="336">
+                <img class="img-responsive" src="~/SecurityProductImage/@Model.s_img" width="320" height="336">
             </div>
         </div>
 
@@ -33,7 +35,7 @@
                 </div>
             </div>
             <br />
-            <div class="row alert-info">
+            <div class="row">
                 <div class="col-md-12">
                     <span class="label"><b>Description:</b> </span>
                     <p class="description">
@@ -48,33 +50,26 @@
                     <span class="monospaced"><b>₹@Model.s_quan</b></span>
                 </div>
             </div>
+                <br />
+
+
+                @using (Html.BeginForm("AddToCart", "Home", new { productId = Model.s_Id }, FormMethod.Post))
+                {
+                    <button type="submit" class="btn btn-outline-primary pull-right"><i class="fa fa-shopping-cart"></i></button>
+
+                }
+            
+            <br />
             <br />
             <div class="row alert-info">
                 <div class="col-md-12">
                     <p class="description">
-                        <span class="label label-primary">For more details contact us!</span>
+                        <span class="label label-primary">For more details <a href="/Home/Contact"> contact us!</a></span>
 
                     </p>
                 </div>
             </div>
             <br />
-
-
-            <br />
-            <div class="row">
-                <div class="col-md-4">
-                    <a class="btn btn-outline-primary" data-toggle="modal" data-target="#exampleModal">
-                        Buy now
-                    </a>
-                </div>
-                <div class="col-md-4">
-                    @using (Html.BeginForm("AddToCart", "Home", new { productId = Model.s_Id }, FormMethod.Post))
-                    {
-                        <button type="submit" class="btn btn-outline-primary pull-right"><i class="fa fa-shopping-cart"></i></button>
-
-                    }
-                </div>
-            </div>
         </div>
 
     </div>

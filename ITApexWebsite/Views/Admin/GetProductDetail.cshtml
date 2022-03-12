@@ -56,19 +56,18 @@
             <br />
 
             <div class="row">
-                <div class="col-md-4">
-                    <a class="btn btn-outline-primary" data-toggle="modal" data-target="#exampleModal">
-                        Buy now
-                    </a>
-                </div>
-                <div class="col-md-4">
-                    @using (Html.BeginForm("AddToCart", "Home", new { productId = Model.p_Id }, FormMethod.Post))
-                    {
-                        <button type="submit" class="btn btn-outline-primary pull-right"><i class="fa fa-shopping-cart"></i></button>
+                <div class="col-md-12">
+                    <p class="description">
+                        <b> <span class="label label-primary">For more details <a href="/Home/Contact"> contact us!</a></span></b>
 
-                    }
+                    </p>
                 </div>
             </div>
+            @using (Html.BeginForm("AddToCart", "Home", new { productId = Model.p_Id }, FormMethod.Post))
+            {
+                <button type="submit" class="btn btn-outline-primary pull-right"><i class="fa fa-shopping-cart"></i></button>
+
+            }
         </div>
 
     </div>

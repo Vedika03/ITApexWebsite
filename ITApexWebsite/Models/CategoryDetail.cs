@@ -27,11 +27,9 @@ namespace ITApexWebsite.Models
 
         [Required(ErrorMessage = "Product Name required")]
         [StringLength(100, ErrorMessage = "Minimum 3 and minimum 5 and maximum 100 charachters are allowed ", MinimumLength = 3)]
-
         public string p_name { get; set; }
 
         [Required(ErrorMessage = "Product Image required")]
-        
         public string p_image { get; set; }
 
         [Required(ErrorMessage ="description is required")]
