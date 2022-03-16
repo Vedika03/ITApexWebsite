@@ -37,15 +37,17 @@
                         </tr>
                     </tfoot>
                     <tbody>
+
+                     
                         @foreach (var item in Model)
                         {
-                        <tr>
-                            <td>@(Model.IndexOf(item) + 1)</td>
-                            <td>@item.c_name</td>
-                            <td>@Html.ActionLink("Edit", "CategoryEdit", new { catId = item.c_Id })</td>
-                              
-                            
-                        </tr>
+                            <tr>
+                                <td>@(Model.IndexOf(item) + 1)</td>
+                                <td>@item.c_name</td>
+                                <td>@Html.ActionLink("Edit", "CategoryEdit", new { catId = item.c_Id })</td>
+
+
+                            </tr>
 
                         }
                     </tbody>

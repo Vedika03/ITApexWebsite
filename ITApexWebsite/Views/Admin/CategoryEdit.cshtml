@@ -31,7 +31,7 @@
             @Html.LabelFor(model => model.isActive, "Active", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 <div class="checkbox">
-                    @Html.CheckBox("Active")
+                    @Html.EditorFor(model => model.isActive, new { htmlAttributes = new { @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.isActive, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -41,7 +41,7 @@
             @Html.LabelFor(model => model.isdelete, "Delete", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 <div class="checkbox">
-                    @Html.CheckBox("Delete")
+                    @Html.EditorFor(model => model.isdelete, new { htmlAttributes = new { @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.isdelete, "", new { @class = "text-danger" })
                 </div>
             </div>

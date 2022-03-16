@@ -52,7 +52,7 @@ namespace ITApexWebsite.Models
         public Nullable<bool> isActive { get; set; }
 
         public Nullable<bool> isDelete { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Category is required")]
         [Range(1,50)]
         public Nullable<int> p_fk_c { get; set; }
         public SelectList Categories { get; set; }

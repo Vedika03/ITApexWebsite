@@ -11,7 +11,8 @@ namespace ITApexWebsite.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class tblProduct
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -22,16 +23,24 @@ namespace ITApexWebsite.Models
         }
     
         public int p_Id { get; set; }
+        [Required(ErrorMessage = "Product name is required")]
         public string p_name { get; set; }
+        [Required(ErrorMessage = "Product Image is required")]
         public string p_image { get; set; }
+        [Required(ErrorMessage = "Product description is required")]
         public string p_description { get; set; }
+        [Required(ErrorMessage = "Product quantity is required")]
         public Nullable<int> p_quantity { get; set; }
+        [Required(ErrorMessage = "Product price is required")]
         public Nullable<int> p_price { get; set; }
         public Nullable<System.DateTime> p_createdDate { get; set; }
         public Nullable<System.DateTime> p_modifiedDate { get; set; }
         public Nullable<bool> p_isFeatured { get; set; }
+        [Required(ErrorMessage = "Mention if product is active or not ")]
         public Nullable<bool> isActive { get; set; }
+        [Required(ErrorMessage = "Do you want to delete the product? ")]
         public Nullable<bool> isDelete { get; set; }
+        [Required(ErrorMessage = "Select Category")]
         public int p_fk_c { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

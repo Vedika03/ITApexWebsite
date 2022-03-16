@@ -93,7 +93,7 @@ namespace ITApexWebsite.Controllers
         //View UserInfo
         public ActionResult UserInfo()
         {
-            List<tblUser> allUsers = _unitOfWork.GetRepositoryInstance<tblUser>().GetAllRecordsIQueryable().Where(i => i.IsDelete == false).ToList();
+            List<tblUser> allUsers = _unitOfWork.GetRepositoryInstance<tblUser>().GetAllRecordsIQueryable().Where(i => i.IsActive == true).ToList();
             return View(allUsers);
 
         }
@@ -108,7 +108,7 @@ namespace ITApexWebsite.Controllers
         //admin categories
         public ActionResult Categories()
         {
-            List<tblCategory> allcategories = _unitOfWork.GetRepositoryInstance<tblCategory>().GetAllRecordsIQueryable().Where(i => i.isdelete == false).ToList();
+            List<tblCategory> allcategories = _unitOfWork.GetRepositoryInstance<tblCategory>().GetAllRecordsIQueryable().Where(i => i.isActive == true).ToList();
             return View(allcategories);
         
         }
@@ -123,8 +123,9 @@ namespace ITApexWebsite.Controllers
         [HttpPost]
         public ActionResult AddCategories(tblCategory tbl)
         {
+            
             _unitOfWork.GetRepositoryInstance<tblCategory>().Add(tbl);
-
+           
             return RedirectToAction("Categories");
         }
 
@@ -140,6 +141,7 @@ namespace ITApexWebsite.Controllers
         [HttpPost]
         public ActionResult CategoryEdit(tblCategory tbl)
         {
+
             _unitOfWork.GetRepositoryInstance<tblCategory>().Update(tbl);
             return RedirectToAction("Categories");
         }

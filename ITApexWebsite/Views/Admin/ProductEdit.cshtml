@@ -98,7 +98,7 @@
         </div>
     </div>
     <br />
-    @Html.HiddenFor(model => model.p_modifiedDate)
+
     @*<div class="col-md-3">
             <div class="form-group">
                 @Html.LabelFor(model => model.p_modifiedDate, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -113,10 +113,10 @@
 
     <div class="col-md-3">
         <div class="form-group">
-            @Html.LabelFor(model => model.p_isFeatured, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.p_isFeatured, "Is Featured", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 <div class="checkbox">
-                    @Html.CheckBox("IsFeatured")
+                    @Html.EditorFor(model => model.p_isFeatured, new { htmlAttributes = new { @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.p_isFeatured, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -128,14 +128,25 @@
             @Html.LabelFor(model => model.isActive, "Active", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 <div class="checkbox">
-                    @Html.CheckBox("IsActive")
+                    @Html.EditorFor(model => model.isActive, new { htmlAttributes = new { @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.isActive, "", new { @class = "text-danger" })
                 </div>
             </div>
         </div>
     </div>
     <br />
-    @Html.HiddenFor(model => model.isDelete)
+
+    <div class="col-md-3">
+        <div class="form-group">
+            @Html.LabelFor(model => model.isDelete, "Delete", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <div class="checkbox">
+                    @Html.EditorFor(model => model.isDelete, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.isDelete, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+    </div>
 
 
 
@@ -151,7 +162,7 @@
 
 </div>
     }
-    </div>
+</div>
 <br />
     <div>
         @Html.ActionLink("Back to List", "Index")

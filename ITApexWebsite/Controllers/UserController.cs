@@ -89,6 +89,8 @@ namespace ITApexWebsite.Controllers
             user.u_email = r.u_email;
             user.u_contact = r.u_contact;
             user.u_pass = r.u_pass;
+            user.IsActive = true;
+            user.IsDelete = false;
             db.tblUsers.Add(user);
             db.SaveChanges();
 

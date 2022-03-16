@@ -11,14 +11,20 @@ namespace ITApexWebsite.Models
     { 
         [Key]
             public int p_Id { get; set; }
+        [Required]
             public string p_name { get; set; }
-            public string p_img { get; set; }
-            public Nullable<int> p_price { get; set; }
-            public string p_desc { get; set; }
-            public Nullable<int> p_quantity { get; set; }
+        [Required]
+        public string p_img { get; set; }
+        [Required]
+        public Nullable<int> p_price { get; set; }
+        [Required]
+        public string p_desc { get; set; }
+        [Required]
+        public Nullable<int> p_quantity { get; set; }
 
             public int c_Id { get; set; }
-            public string c_name { get; set; }
+        [Required]
+        public string c_name { get; set; }
 
             public Nullable<int> p_fk_user { get; set; }
             public Nullable<int> p_fk_Category { get; set; }

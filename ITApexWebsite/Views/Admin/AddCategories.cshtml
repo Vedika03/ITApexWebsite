@@ -22,19 +22,19 @@
                     @Html.LabelFor(model => model.c_name, "Category Name", htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
                         @Html.EditorFor(model => model.c_name, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.c_name, "Category is required", new { @class = "text-danger" })
+                        @Html.ValidationMessageFor(model => model.c_name,"", new { @class = "text-danger" })
                     </div>
                     <br />
 
                     @Html.LabelFor(model => model.isActive, "Active", htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
                         <div class="checkbox">
-                            @Html.CheckBox("isActive")
-                            @Html.ValidationMessageFor(model => model.isActive, "Please mention the product has to be active or not", new { @class = "text-danger" })
+                            @Html.EditorFor(model => model.isActive, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.isActive, "", new { @class = "text-danger" })
                         </div>
                     </div>
 
-                    @*@Html.HiddenFor(model => model.isdelete)*@
+                    @Html.HiddenFor(model => model.isdelete)
 
                     <div class="form-group">
                         <a onclick="window.history.back();" class="btn btn-danger">Cancel</a>

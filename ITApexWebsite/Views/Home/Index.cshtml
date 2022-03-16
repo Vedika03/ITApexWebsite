@@ -22,6 +22,7 @@
     </ul>
     <div class="carousel-inner">
         <div class="carousel-item active">
+            
             <img src="~/img/apex1.png" width="1100" height="560">
             <div class="carousel-caption">
                 <h3>One Stop For All IT Products</h3>
@@ -51,6 +52,7 @@
 
 <hr />
 <br />
+<!---------search bar start----------->
 <form method="post">
     <div class="olContent f1"><h2 style="color:black">Search Product/Category</h2></div>
     <div class="olSearch fr">
@@ -61,11 +63,12 @@
 
     </div>
 </form>
+<!---------search bar end----------->
 <br />
 <hr />
 <br />
 
-
+<!---------products row start----------->
 <div class="products">
     <div class="row">
         <div class="col-md-12">
@@ -125,85 +128,42 @@
         }
     </div>
 
-
     <br />
     <br />
-
-    @*<div class="row product-container">
-            @foreach (var item in Model.ListOfsecurityPro)
-            {
-                <div class="col-md-3 col-sm-3 col-xs-6" style="margin-bottom:8px">
-                    <div class="thumbnail product-item" style="height:300px">
-                        <img class="img-responsive" src="~/SecurityProductImage/@item.s_img" title="Click to view product detail" style="cursor:pointer;height:160px;width:100%" />
-                        <div class="caption">
-                            <h5>@item.s_name</h5>
-                            <p>₹@item.s_price </p>
-                            <p>
-                                @if (item.s_quan > 0)
-                                {
-                                    using (Html.BeginForm("SAddToCart", "Home", new { productId = item.s_Id }, FormMethod.Post))
-                                    {
-                                        <button type="submit" class="btn btn-primary pull-right"><i class="fa fa-shopping-cart"></i></button>
-
-                                    }
-
-                                <p>Available</p>
-                            }
-                            else
-                            {
-                                <p>Not Available</p>
-                            }
-
-                                <div class="btn-block">
-                                    <a href="/Home/GetSecurityProductDetail/@item.s_Id" class="btn btn-block btn-outline-primary">View Details</a>
-                                </div>
-
-
-                            </div>
-
-                        </div>
-
-                    </div>
-                }
-        </div>*@
 
     @Html.PagedListPager(Model.ListOfProducts, page => Url.Action("Index", new { page, search = Request.QueryString["search"] }), new PagedListRenderOptions() { Display = PagedListDisplayMode.IfNeeded, DisplayItemSliceAndTotal = true })
 
 </div>
-
+<!---------products row end----------->
 <hr />
-
-
-
-
 
 <!---------contact-form-start----------->
 <section class="contactus" id="contactdiv">
-        <h1 class="text-center text-capitalize">Contact Us</h1>
-        <p class="text-center text-uppercase pt-1">we're here to help you and support you.</p>
+    <h1 class="text-center text-capitalize">Contact Us</h1>
+    <p class="text-center text-uppercase pt-1">we're here to help you and support you.</p>
 
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-8 col-md-8 col-10 offset-2 offset-md-2 col-1">
-                    <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Enter username" id="username" required autocomplete="off">
-                    </div>
-                    <div class="form-group">
-                        <input type="email" class="form-control" placeholder="Enter email" id="email" required autocomplete="off">
-                    </div>
-                    <div class="form-group">
-                        <input type="number" class="form-control" placeholder="Enter mobile number" id="mobile" required autocomplete="off">
-                    </div>
-                    <div class="form-group">
-                        <textarea class="form-control" placeholder="Enter your message" rows="4" id="comment"></textarea>
-                    </div>
-                    <div class="d-flex justify-content-center form-button">
-                        <button type="submit" class="btn btn-primary">Submit</button>
-                    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-8 col-10 offset-2 offset-md-2 col-1">
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Enter username" id="username" required autocomplete="off">
+                </div>
+                <div class="form-group">
+                    <input type="email" class="form-control" placeholder="Enter email" id="email" required autocomplete="off">
+                </div>
+                <div class="form-group">
+                    <input type="number" class="form-control" placeholder="Enter mobile number" id="mobile" required autocomplete="off">
+                </div>
+                <div class="form-group">
+                    <textarea class="form-control" placeholder="Enter your message" rows="4" id="comment"></textarea>
+                </div>
+                <div class="d-flex justify-content-center form-button">
+                    <button type="submit" class="btn btn-primary">Submit</button>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
 
 

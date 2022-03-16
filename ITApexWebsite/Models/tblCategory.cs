@@ -23,8 +23,9 @@ namespace ITApexWebsite.Models
         }
     
         public int c_Id { get; set; }
-       
+       [Required(ErrorMessage ="Category name is required")]
         public string c_name { get; set; }
+        [Required(ErrorMessage = "Please mention product is active or not")]
         public Nullable<bool> isActive { get; set; }
         public Nullable<bool> isdelete { get; set; }
     
