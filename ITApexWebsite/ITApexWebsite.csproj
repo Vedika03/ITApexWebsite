@@ -409,6 +409,7 @@
     <Content Include="Views\Home\DisplayProduct.cshtml" />
     <Content Include="Views\Shared\_AddToCartPartialView.cshtml" />
     <Content Include="Views\Shared\_securityLayout.cshtml" />
+    <Content Include="Views\Home\LoginPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="ProductImage\" />

@@ -12,8 +12,9 @@ using System.Data.SqlClient;
 using System.Configuration;
 using System.IO;
 using System.Net;
-
-
+using System.Net.Mail;
+using System.Web.Hosting;
+using System.Text;
 
 namespace ITApexWebsite.Controllers
 {
@@ -305,16 +306,73 @@ namespace ITApexWebsite.Controllers
             //    return HttpNotFound();
             //}
             //Session.Remove("cart");
+            //BuildEmailTemplate(dt.shipping_Id);
             return View(order);
 
 
         }
+
+        //public void BuildEmailTemplate(int regID)
+        //{
+        //    string body = System.IO.File.ReadAllText(HostingEnvironment.MapPath("~/EmailTemplate/") + "Text" + ".cshtml");
+        //    var regInfo = ctx.tblShippingDetails.Where(x => x.shipping_Id == regID).FirstOrDefault();
+        //    BuildEmailTemplate("Your Account is successfully created", body, regInfo.CustomerEmail);
+        //}
+
+        //public void BuildEmailTemplate(string subjectText, string bodyText, string sendTo)
+        //{
+        //    string from, to, bcc, cc, subject, body;
+        //    from = "vedasc03@gmail.com";
+        //    to = sendTo.Trim();
+        //    bcc = "";
+        //    cc = "";
+        //    subject = subjectText;
+        //    StringBuilder sb = new StringBuilder();
+        //    sb.Append(bodyText);
+        //    body = sb.ToString();
+        //    MailMessage mail = new MailMessage();
+        //    mail.From = new MailAddress(from);
+        //    mail.To.Add(new MailAddress(to));
+        //    if (!string.IsNullOrEmpty(bcc))
+        //    {
+        //        mail.Bcc.Add(new MailAddress(bcc));
+        //    }
+        //    if (!string.IsNullOrEmpty(cc))
+        //    {
+        //        mail.CC.Add(new MailAddress(cc));
+        //    }
+
+        //    mail.Subject = subject;
+        //    mail.Body = body;
+        //    mail.IsBodyHtml = true;
+        //    SendEmail(mail);
+        //}
+
+        //public static void SendEmail(MailMessage mail)
+        //{
+        //    SmtpClient client = new SmtpClient();
+        //    client.Host = "smtp.gmail.com";
+        //    client.Port = 587;
+        //    client.EnableSsl = true;
+        //    client.UseDefaultCredentials = false;
+        //    client.DeliveryMethod = SmtpDeliveryMethod.Network;
+        //    client.Credentials = new System.Net.NetworkCredential("vedasc03@gmail.com", "Vedas@0301");
+        //    try
+        //    {
+        //        client.Send(mail);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        throw ex;
+        //    }
+        //}
 
         //get shipping details
         public ActionResult CheckOutDetails()
         {
             return View();
         }
+
 
         //About
         public ActionResult About()
@@ -421,6 +479,13 @@ namespace ITApexWebsite.Controllers
             return Redirect("SecurityProducts");
         }
 
+
+        ////partial view for login in navbar
+        //public PartialViewResult LoginPartial(tblUser user)
+        //{
+        //    Session["Uname"] = user.u_name.ToString();
+        //    return PartialView();
+        //}
     }
 
 

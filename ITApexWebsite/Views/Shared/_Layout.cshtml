@@ -93,6 +93,8 @@
                         </div>
                     </li>
 
+                    @*@Html.Action("LoginPartial","Home")*@
+
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Login
@@ -122,7 +124,7 @@
                         <a class="nav-link" href="/User/Login">Sell</a>
                     </li>
 
-                 
+
                     <li class="nav-item dropdown">
                         <a data-toggle="dropdown" class="nav-link dropdown-toggle" href="#">Cart<b class="caret"></b></a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -144,21 +146,21 @@
                     </li>
 
                     @*<li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#"><i class="fa fa-shopping-cart" aria-hidden="true"></i></a>
+                <a class="nav-link dropdown-toggle" href="#"><i class="fa fa-shopping-cart" aria-hidden="true"></i></a>
 
-                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
 
-                                    @if (Session["cart"] != null)
-                                    {
-                                        foreach (Item item in (List<Item>)Session["cart"])
-                                        {
-                                            <a class="dropdown-item" href="#">@item.Product.p_name (@item.Quantity)</a>
-                                        }
-                                    }
+                    @if (Session["cart"] != null)
+                    {
+                        foreach (Item item in (List<Item>)Session["cart"])
+                        {
+                            <a class="dropdown-item" href="#">@item.Product.p_name (@item.Quantity)</a>
+                        }
+                    }
 
 
-                                </div>
-                        </li>*@
+                </div>
+        </li>*@
 
 
                     <li class="nav-item">

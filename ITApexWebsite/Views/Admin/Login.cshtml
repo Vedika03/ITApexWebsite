@@ -56,12 +56,15 @@
                 <div class="signin">
                     <form>
                         @*<input type="text" class="user" value="Enter Your Username" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Enter Your Username';}" />*@
-                        @Html.EditorFor(model => model.a_email, new { htmlAttributes = new { @type = "text", @class = "user", @value = "Enter Your Email-Id",@placeholder="Email-Id" } })
-                        
+                        @Html.EditorFor(model => model.a_email, new { htmlAttributes = new { @type = "text", @class = "user", @value = "Enter Your Email-Id", @placeholder = "Email-Id" } })
+                        <br />
+                        @Html.ValidationMessageFor(model => model.a_email)
 
                         @*<input type="password" class="pass" value="Password" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Password';}" />*@
-                        @Html.EditorFor(model => model.a_pass, new { htmlAttributes = new { @type = "password", @class = "pass", @value = "Password",@placeholder="Password" } })
-                       
+                        @Html.EditorFor(model => model.a_pass, new { htmlAttributes = new { @type = "password", @class = "pass", @value = "Password", @placeholder = "Password" } })
+                        <br />
+                        @Html.ValidationMessageFor(model => model.a_pass)
+                        <br />
                         <input type="submit" value="Login" class="btn btn-success">
 
                     </form>

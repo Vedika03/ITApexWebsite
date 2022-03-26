@@ -1,0 +1,22 @@
+﻿@using ITApexWebsite.Models.Home;
+
+@if (Session["Uname"] != null)
+{
+    <a class="nav-link dropdown-toggle" id="navbarDropdown" href="../User/UserDashboard" role="button" data-bs-toggle="dropdown" aria-expanded="false">Hi! @Session["Uname"].ToString()</a>
+    <a class="dropdown-item" href="../User/Logout">Logout</a>
+}
+else
+{
+    <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Login
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="/User/Login">Login</a>
+            <a class="dropdown-item" href="/User/Registration">Register</a>
+            <a class="dropdown-item" href="/User/Logout">Logout</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="/Admin/Login">Admin Login</a>
+        </div>
+    </li>
+}
