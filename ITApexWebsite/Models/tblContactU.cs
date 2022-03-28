@@ -11,13 +11,18 @@ namespace ITApexWebsite.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class tblContactU
     {
         public int Id { get; set; }
+        [Required(ErrorMessage ="Enter your name")]
         public string name { get; set; }
+        [Required(ErrorMessage = "Enter your Email")]
         public string email { get; set; }
+        [Required(ErrorMessage = "Enter your Contact number")]
         public string contact_no { get; set; }
+        [Required(ErrorMessage = "Enter your message")]
         public string message { get; set; }
     }
 }

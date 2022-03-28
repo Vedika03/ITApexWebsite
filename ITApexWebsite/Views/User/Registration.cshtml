@@ -33,25 +33,26 @@
                         @*<input type="text" class="user" value="Enter Your Username" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Enter Your Username';}" />*@
                         @Html.EditorFor(model => model.u_name, new { htmlAttributes = new { @type = "text", @class = "user", @value = "Enter Your Name", @placeholder = "Enter your name" } })
                        <br/>
-                        @Html.ValidationMessageFor(model => model.u_name)
+                        @Html.ValidationMessageFor(model => model.u_name, "", new { @class = "text-danger" })
 
                         @Html.EditorFor(model => model.u_email, new { htmlAttributes = new { @type = "text", @class = "user", @value = "Enter Your Email-id", @placeholder = "Enter your Email-ID" } })
                         <br />
-                        @Html.ValidationMessageFor(model => model.u_email)
+                        @Html.ValidationMessageFor(model => model.u_email, "", new { @class = "text-danger" })
 
                         @Html.EditorFor(model => model.u_contact, new { htmlAttributes = new { @type = "text", @class = "user", @value = "Enter Your Contact number", @placeholder = "Enter your Contact no." } })
                         <br />
-                        @Html.ValidationMessageFor(model => model.u_contact)
+                        @Html.ValidationMessageFor(model => model.u_contact, "", new { @class = "text-danger" })
 
                         @*<input type="password" class="pass" value="Password" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Password';}" />*@
                         @Html.EditorFor(model => model.u_pass, new { htmlAttributes = new { @type = "password", @class = "pass", @value = "Password", @placeholder = "Enter your password" } })
-                        @Html.ValidationMessageFor(model => model.u_pass)
+                        @Html.ValidationMessageFor(model => model.u_pass, "", new { @class = "text-danger" })
 
-                        @Html.EditorFor(model => model.u_pass, new { htmlAttributes = new { @type = "password", @class = "pass", @value = "ConfirmPassword", @placeholder = "Confirm Password" } })
-                        @Html.ValidationMessageFor(model => model.u_pass)
+                        @Html.EditorFor(model => model.confirmPass, new { htmlAttributes = new { @type = "password", @class = "pass", @value = "ConfirmPassword", @placeholder = "Confirm Password" } })
+                        @Html.ValidationMessageFor(model => model.confirmPass, "", new { @class = "text-danger" })
 
                         <input type="submit" value="Register" onclick="SendEmail()" class="btn btn-success">
                         <div class="form-group">
+                            <br/>
                             <div class="col-md-offset-2 col-md-2">
                                 <p style="color:red">@ViewBag.DuplicateMessage</p>
                             </div>

@@ -237,20 +237,21 @@ namespace ITApexWebsite.Controllers
 
             }
 
-            Session.Remove("cart");
+            
 
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
+            //if (id == null)
+            //{
+            //    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            //}
             var order = ctx.tblShippingDetails.Find(id);
-            if (order == null)
-            {
-                return HttpNotFound();
-            }
+            //if (order == null)
+            //{
+            //    return HttpNotFound();
+            //}
+            //Session.Remove("cart");
             return View(order);
 
-
+            
         }
 
         //Process order

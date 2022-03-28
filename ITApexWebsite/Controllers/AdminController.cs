@@ -236,7 +236,7 @@ namespace ITApexWebsite.Controllers
                 file.SaveAs(path);
             }
             tbl.p_image = pic;
-
+            tbl.isDelete = false;
             tbl.p_createdDate = DateTime.Now;
             _unitOfWork.GetRepositoryInstance<tblProduct>().Add(tbl);
             return RedirectToAction("Product");
@@ -264,7 +264,7 @@ namespace ITApexWebsite.Controllers
                 file.SaveAs(path);
             }
             tbl.s_img = pic;
-
+            tbl.isDelete = false;
             tbl.s_createdDate = DateTime.Now;
             _unitOfWork.GetRepositoryInstance<securityProduct>().Add(tbl);
             return RedirectToAction("securityProduct");

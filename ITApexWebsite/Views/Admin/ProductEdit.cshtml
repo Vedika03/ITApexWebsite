@@ -51,6 +51,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.p_image, "Upload Image", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
+                @*<p style="color:red">Please enter the image again</p>*@
                 <input type="file" name="file" id="file" style="width:100%;" />
                 @*@Html.ValidationMessageFor(model => model.p_image, "", new { @class = "text-danger" })*@
             </div>

@@ -125,7 +125,7 @@ namespace ITApexWebsite.Controllers
         public void BuildEmailTemplate(string subjectText, string bodyText, string sendTo)
         {
             string from, to, bcc, cc, subject, body;
-            from = "vedasc03@gmail.com";
+            from = "itapexsales@gmail.com";
             to = sendTo.Trim();
             bcc = "";
             cc = "";
@@ -159,7 +159,7 @@ namespace ITApexWebsite.Controllers
             client.EnableSsl = true;
             client.UseDefaultCredentials = false;
             client.DeliveryMethod = SmtpDeliveryMethod.Network;
-            client.Credentials = new System.Net.NetworkCredential("vedasc03@gmail.com", "Vedas@0301");
+            client.Credentials = new System.Net.NetworkCredential("itapexsales@gmail.com", "itapex@03");
             try
             {
                 client.Send(mail);
@@ -321,6 +321,7 @@ namespace ITApexWebsite.Controllers
             tbl.p_img = pic;
 
             tbl.p_createdDate = DateTime.Now;
+            tbl.isDelete = false;
             tbl.p_fk_user = Convert.ToInt32(Session["userId"].ToString());
             _unitOfWork.GetRepositoryInstance<tblProduct_u>().Add(tbl);
             return RedirectToAction("Product");

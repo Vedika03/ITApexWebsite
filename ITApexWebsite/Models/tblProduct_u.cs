@@ -35,7 +35,7 @@ namespace ITApexWebsite.Models
         public Nullable<bool> isDelete { get; set; }
         public Nullable<System.DateTime> p_createdDate { get; set; }
         public Nullable<System.DateTime> p_modifiedDate { get; set; }
-        [Required(ErrorMessage = "Select Category")]
+       
         public virtual tblCategory tblCategory { get; set; }
         public virtual tblUser tblUser { get; set; }
     }
