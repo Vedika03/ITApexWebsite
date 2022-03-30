@@ -97,6 +97,24 @@ namespace ITApexWebsite.Controllers
             return View(allUsers);
 
         }
+       
+
+        //post Delete user
+       
+        public ActionResult UserDelete(int id)
+        {
+           
+            
+                DbITApexEntities db = new DbITApexEntities();
+                var deleteUser = db.tblUsers.Where(x => x.u_Id == id).FirstOrDefault();
+                db.tblUsers.Remove(deleteUser);
+                db.SaveChanges();
+            
+           
+            return RedirectToAction("Index");
+        }
+
+
         //View Contact us 
         public ActionResult ContactUsInfo()
         {
@@ -149,13 +167,13 @@ namespace ITApexWebsite.Controllers
         //admin products
         public ActionResult Product()
         {
-            return View(_unitOfWork.GetRepositoryInstance<tblProduct>().GetProduct());
+            return View(_unitOfWork.GetRepositoryInstance<tblProduct>().GetProduct().Where(x=>x.isDelete==false));
         }
 
         ////admin security products
         public ActionResult securityProduct()
         {
-            return View(_unitOfWork.GetRepositoryInstance<securityProduct>().GetProduct());
+            return View(_unitOfWork.GetRepositoryInstance<securityProduct>().GetProduct().Where(x => x.isDelete == false));
         }
 
         //admin edit products

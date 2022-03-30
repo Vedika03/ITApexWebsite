@@ -21,6 +21,10 @@
         <AssociationConnector Association="DbITApexModel.FK_OrderDetails_ToTable_tblShippingDetails" />
         <EntityTypeShape EntityType="DbITApexModel.securityProduct" Width="1.5" PointX="8.75" PointY="0.625" />
         <EntityTypeShape EntityType="DbITApexModel.tblContactU" Width="1.625" PointX="7" PointY="0.875" />
+        <EntityTypeShape EntityType="DbITApexModel.secShippingDetail" Width="1.5" PointX="7.875" PointY="9.25" />
+        <EntityTypeShape EntityType="DbITApexModel.secOrderDetail" Width="1.5" PointX="8.625" PointY="5.875" />
+        <AssociationConnector Association="DbITApexModel.FK_secOrderDetails_secShippingDetails" />
+        <AssociationConnector Association="DbITApexModel.FK_secOrderDetails_securityProducts" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

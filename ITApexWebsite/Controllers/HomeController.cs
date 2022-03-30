@@ -124,7 +124,7 @@ namespace ITApexWebsite.Controllers
         {
             int pagesize = 9, pageindex = 1;
             pageindex = page.HasValue ? Convert.ToInt32(page) : 1;
-            var list = ctx.securityProducts.ToList();
+            var list = ctx.securityProducts.ToList().Where(x=>x.isDelete==false);
             //var list = db.tblProduct_u.Where(Convert.ToInt32(isActive).ToString()=x => x.isActive == 1).OrderByDescending(x => x.p_id).ToList();
             IPagedList<securityProduct> stu = list.ToPagedList(pageindex, pagesize);
             return View(stu);
@@ -190,8 +190,23 @@ namespace ITApexWebsite.Controllers
             return View();
         }
 
+        public ActionResult SCheckOut()
+        {
+            string path = Server.MapPath("~/SecurityProductImage/");
+            string folderPath = Path.Combine(Server.MapPath("~/SecurityProductImage/"), path);
+            string[] imagefiles = Directory.GetFiles(folderPath);
+            ViewBag.image = imagefiles;
+            return View();
+        }
+
         //Checkout throgh UPI
         public ActionResult CheckoutUPI()
+        {
+            return View();
+        }
+
+        //SCheckout throgh UPI
+        public ActionResult SCheckoutUPI()
         {
             return View();
         }
@@ -369,9 +384,126 @@ namespace ITApexWebsite.Controllers
         //}
 
         //get shipping details
+
+        //COD ITproduct
         public ActionResult CheckOutDetails()
         {
             return View();
+        }
+
+        //COD Sproduct
+        public ActionResult SCheckOutDetails()
+        {
+            return View();
+        }
+        //SProcess order
+        public ActionResult SProcessOrder(FormCollection frc, int? id)
+        {
+
+
+            List<Item> Cart = (List<Item>)Session["Scart"];
+
+            secShippingDetail dt = new secShippingDetail()
+            {
+                CustomerName = frc["cusName"],
+                CustomerNo = frc["cusNo"],
+                CustomerEmail = frc["cusEMail"],
+                CustomerAddress = frc["cusAdd"],
+                OrderDate = DateTime.Now,
+                paymentType = "Cash",
+                Status = "Processing",
+
+                pincode = frc["pin"]
+
+            };
+            ctx.secShippingDetails.Add(dt);
+            
+            ctx.SaveChanges();
+
+            //Saving the order detail into orderDetails table
+
+            foreach (Item item in Cart)
+            {
+
+                secOrderDetail orderDetail = new secOrderDetail()
+                {
+                    Id = dt.shipping_Id,
+                    product_id = item.SProduct.s_Id,
+                    quantity = item.Quantity,
+                    price = item.SProduct.s_price.ToString()
+
+                };
+                ctx.secOrderDetails.Add(orderDetail);
+                
+                ctx.SaveChanges();
+
+            }
+            //if (id == null)
+            //{
+            //    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            //}
+            var order = ctx.secShippingDetails.Find(id);
+            //if (order == null)
+            //{
+            //    return HttpNotFound();
+            //}
+            //Session.Remove("cart");
+            //BuildEmailTemplate(dt.shipping_Id);
+            return View(order);
+        }
+
+        //SProcess order through UPI
+        public ActionResult SUPIProcessOrder(FormCollection frc, int? id)
+        {
+
+
+            List<Item> Cart = (List<Item>)Session["Scart"];
+
+            secShippingDetail dt = new secShippingDetail()
+            {
+                CustomerName = frc["cusName"],
+                CustomerNo = frc["cusNo"],
+                CustomerEmail = frc["cusEMail"],
+                CustomerAddress = frc["cusAdd"],
+                OrderDate = DateTime.Now,
+                paymentType = "UPI",
+                Status = "Processing",
+
+                pincode = frc["pin"]
+
+            };
+            ctx.secShippingDetails.Add(dt);
+            
+            ctx.SaveChanges();
+
+            //Saving the order detail into orderDetails table
+
+            foreach (Item item in Cart)
+            {
+
+                secOrderDetail orderDetail = new secOrderDetail()
+                {
+                    Id = dt.shipping_Id,
+                    product_id = item.SProduct.s_Id,
+                    quantity = item.Quantity,
+                    price = item.SProduct.s_price.ToString()
+
+                };
+                ctx.secOrderDetails.Add(orderDetail);
+                ctx.SaveChanges();
+
+            }
+            //if (id == null)
+            //{
+            //    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            //}
+            var order = ctx.secShippingDetails.Find(id);
+            //if (order == null)
+            //{
+            //    return HttpNotFound();
+            //}
+            //Session.Remove("cart");
+            return View(order);
         }
 
 
@@ -464,7 +596,7 @@ namespace ITApexWebsite.Controllers
         }
 
 
-        //Remove from cart
+        //SRemove from cart
         public ActionResult SRemoveFromCart(int productId)
         {
             List<Item> cart = (List<Item>)Session["Scart"];

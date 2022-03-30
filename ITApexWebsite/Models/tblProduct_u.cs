@@ -11,31 +11,22 @@ namespace ITApexWebsite.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-
+    
     public partial class tblProduct_u
     {
         public int p_Id { get; set; }
-        [Required(ErrorMessage = "Product name is required")]
         public string p_name { get; set; }
-        [Required(ErrorMessage = "Product Image is required")]
         public string p_img { get; set; }
-        [Required(ErrorMessage = "Product price is required")]
         public Nullable<int> p_price { get; set; }
-        [Required(ErrorMessage = "Product description is required")]
         public string p_desc { get; set; }
-        [Required(ErrorMessage = "Product quantity is required")]
         public Nullable<int> p_quantity { get; set; }
         public Nullable<int> p_fk_user { get; set; }
-        [Required(ErrorMessage = "Select Category")]
         public Nullable<int> p_fk_Category { get; set; }
-        [Required(ErrorMessage = "Mention if product is active or not ")]
         public Nullable<bool> isActive { get; set; }
-        [Required(ErrorMessage = "Do you want to delete the product? ")]
         public Nullable<bool> isDelete { get; set; }
         public Nullable<System.DateTime> p_createdDate { get; set; }
         public Nullable<System.DateTime> p_modifiedDate { get; set; }
-       
+    
         public virtual tblCategory tblCategory { get; set; }
         public virtual tblUser tblUser { get; set; }
     }

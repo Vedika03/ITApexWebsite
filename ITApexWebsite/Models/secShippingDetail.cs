@@ -12,25 +12,25 @@ namespace ITApexWebsite.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class tblUser
+    public partial class secShippingDetail
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public tblUser()
+        public secShippingDetail()
         {
-            this.tblProduct_u = new HashSet<tblProduct_u>();
+            this.secOrderDetails = new HashSet<secOrderDetail>();
         }
     
-        public int u_Id { get; set; }
-        public string u_name { get; set; }
-        public string u_email { get; set; }
-        public string u_contact { get; set; }
-        public string u_pass { get; set; }
-        public Nullable<System.DateTime> u_CreatedOn { get; set; }
-        public Nullable<System.DateTime> u_ModifiedOn { get; set; }
-        public Nullable<bool> IsActive { get; set; }
-        public Nullable<bool> IsDelete { get; set; }
+        public int shipping_Id { get; set; }
+        public string paymentType { get; set; }
+        public Nullable<System.DateTime> OrderDate { get; set; }
+        public string CustomerName { get; set; }
+        public string CustomerNo { get; set; }
+        public string CustomerEmail { get; set; }
+        public string CustomerAddress { get; set; }
+        public string pincode { get; set; }
+        public string Status { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tblProduct_u> tblProduct_u { get; set; }
+        public virtual ICollection<secOrderDetail> secOrderDetails { get; set; }
     }
 }

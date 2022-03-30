@@ -38,9 +38,10 @@
                         </tr>
                     </tfoot>
                     <tbody>
-                        @foreach (var item in Model)
-                        {
-                            int count = 1;
+                        @{int count = 1;
+                            foreach (var item in Model)
+                            {
+
                             <tr>
                                 <td>@count</td>
                                 <td>@item.s_name</td>
@@ -49,9 +50,10 @@
                                 </td>
 
                             </tr>
-                            count++;
+                                    count++;
 
-                        }
+                                }
+                            }
 
                     </tbody>
 

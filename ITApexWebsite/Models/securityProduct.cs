@@ -11,26 +11,28 @@ namespace ITApexWebsite.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-
+    
     public partial class securityProduct
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public securityProduct()
+        {
+            this.secOrderDetails = new HashSet<secOrderDetail>();
+        }
+    
         public int s_Id { get; set; }
-        [Required(ErrorMessage ="Product name is required")]
         public string s_name { get; set; }
-        [Required(ErrorMessage = "Product Image is required")]
         public string s_img { get; set; }
-        [Required(ErrorMessage = "Product description is required")]
         public string s_desc { get; set; }
-        [Required(ErrorMessage = "Product quantity is required")]
         public Nullable<int> s_quan { get; set; }
         public Nullable<System.DateTime> s_createdDate { get; set; }
         public Nullable<System.DateTime> s_modifiedDate { get; set; }
         public Nullable<bool> isFeatured { get; set; }
-        [Required(ErrorMessage = "Mention if product is active or not ")]
         public Nullable<bool> isActice { get; set; }
         public Nullable<bool> isDelete { get; set; }
-        [Required(ErrorMessage = "Product price is required")]
         public Nullable<int> s_price { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<secOrderDetail> secOrderDetails { get; set; }
     }
 }

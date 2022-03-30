@@ -192,6 +192,12 @@
     <Compile Include="Models\OrderDetail.cs">
       <DependentUpon>ITApexModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\secOrderDetail.cs">
+      <DependentUpon>ITApexModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\secShippingDetail.cs">
+      <DependentUpon>ITApexModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\securityProduct.cs">
       <DependentUpon>ITApexModel.tt</DependentUpon>
     </Compile>
@@ -411,6 +417,11 @@
     <Content Include="Views\Shared\_securityLayout.cshtml" />
     <Content Include="Views\Home\LoginPartial.cshtml" />
     <Content Include="Views\Home\UPIProcessOrder.cshtml" />
+    <Content Include="Views\Home\SCheckOut.cshtml" />
+    <Content Include="Views\Home\SCheckOutDetails.cshtml" />
+    <Content Include="Views\Home\SProcessOrder.cshtml" />
+    <Content Include="Views\Home\SCheckoutUPI.cshtml" />
+    <Content Include="Views\Admin\UserDelete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="ProductImage\" />

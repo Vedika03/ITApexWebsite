@@ -47,7 +47,8 @@
                             <td>@item.u_name</td>
                             <td>@item.u_email</td>
                             <td>@item.u_contact</td>
-                            <td>@Html.ActionLink("Edit", "UserEdit", new { userId = item.u_Id })</td>
+                            <td><a href="@Url.Action("UserDelete","Admin",new { id=item.u_Id})">Delete</a>
+                            </td>
 
                         </tr>
 

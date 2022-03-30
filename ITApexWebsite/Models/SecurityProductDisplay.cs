@@ -9,7 +9,7 @@ namespace ITApexWebsite.Models
     public class SecurityProductDisplay
     {
         public int s_Id { get; set; }
-        [Required]
+        [Required(ErrorMessage ="Name is required")]
         public string s_name { get; set; }
         [Required]
         public string s_img { get; set; }

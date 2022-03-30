@@ -12,12 +12,14 @@ namespace ITApexWebsite.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class tblContactU
+    public partial class secOrderDetail
     {
         public int Id { get; set; }
-        public string name { get; set; }
-        public string email { get; set; }
-        public string contact_no { get; set; }
-        public string message { get; set; }
+        public int product_id { get; set; }
+        public string price { get; set; }
+        public Nullable<int> quantity { get; set; }
+    
+        public virtual secShippingDetail secShippingDetail { get; set; }
+        public virtual securityProduct securityProduct { get; set; }
     }
 }

@@ -1,15 +1,14 @@
 ﻿@using ITApexWebsite.Models.Home
 @{
-    ViewBag.Title = "Checkout";
+    ViewBag.Title = "SCheckOut";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-
-<br/>
+<br />
 <br />
 <br />
 <h2>Checkout</h2>
-@if (Session["cart"] == null)
+@if (Session["Scart"] == null)
 {
     <div class="alert alert-danger">
         <strong>No product added to cart!</strong>
@@ -30,19 +29,19 @@ else
             </tr>
         </thead>
         <tbody>
-            @foreach (Item item in (List<Item>)Session["cart"])
+            @foreach (Item item in (List<Item>)Session["Scart"])
             {
                 <tr>
-                    <td> <img src="~/ProductImage/@item.Product.p_image" style="height:50px" width="65"/></td>
-                    <td>@item.Product.p_name</td>
+                    <td> <img src="~/SecurityProductImage/@item.SProduct.s_img" style="height:50px" width="65" /></td>
+                    <td>@item.SProduct.s_name</td>
 
                     <td>@item.Quantity</td>
-                    <td>@item.Product.p_price</td>
+                    <td>@item.SProduct.s_price</td>
                     <td>
-                        <a href="@Url.Action("AddToCart", "Home", new { productId = item.Product.p_Id, url = "CheckOut" })">
+                        <a href="@Url.Action("SAddToCart", "Home", new { productId = item.SProduct.s_Id, url = "CheckOut" })">
                             <i class="fa fa-plus"></i>
                         </a>
-                        <a href="@Url.Action("RemoveFromCart", "Home", new { productId = item.Product.p_Id, url = "CheckOut"  })">
+                        <a href="@Url.Action("SRemoveFromCart", "Home", new { productId = item.SProduct.s_Id, url = "CheckOut"  })">
                             <i class="fa fa-minus"></i>
                         </a>
                     </td>
@@ -53,10 +52,9 @@ else
         </tbody>
     </table>
 }
-<a class="btn btn-success" href="@Url.Action("CheckoutDetails","Home")">Checkout with COD >></a>
+<a class="btn btn-success" href="@Url.Action("SCheckoutDetails","Home")">Checkout with COD >></a>
 
-<a class="btn btn-success" href="@Url.Action("CheckoutUPI","Home")">Checkout with UPI >></a>
+<a class="btn btn-success" href="@Url.Action("SCheckoutUPI","Home")">Checkout with UPI >></a>
 
 <a class="btn btn-info" href="@Url.Action("Index","Home")">Continue Shopping</a>
-
 

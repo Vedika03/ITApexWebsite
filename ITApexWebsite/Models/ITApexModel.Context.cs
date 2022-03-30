@@ -35,5 +35,7 @@ namespace ITApexWebsite.Models
         public virtual DbSet<tblShippingDetail> tblShippingDetails { get; set; }
         public virtual DbSet<securityProduct> securityProducts { get; set; }
         public virtual DbSet<tblContactU> tblContactUs { get; set; }
+        public virtual DbSet<secShippingDetail> secShippingDetails { get; set; }
+        public virtual DbSet<secOrderDetail> secOrderDetails { get; set; }
     }
 }
